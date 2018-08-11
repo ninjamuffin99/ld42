@@ -14,6 +14,13 @@ class PlayState extends FlxState
 	
 	private var _grpPrevCommands:FlxTypedGroup<FlxText>;
 	
+	private var listCommands:Array<String> = 
+	[
+		"help"
+	];
+	
+	private var stinky = "help";
+	
 	override public function create():Void
 	{
 		_commandLine = new FlxInputText(20, FlxG.height - 20, FlxG.width - 40, "", 16);
@@ -45,15 +52,17 @@ class PlayState extends FlxState
 		var commands = cmd.split(" ");
 		var curCommand = commands[0];
 		
+		
+		
 		terminalAdd(cmd);
 		
-		if (curCommand == "help")
+		switch(curCommand)
 		{
-			terminalAdd("this\nis\ntest boyyyy");
-		}
-		
-		
-			
+			case "help":
+				terminalAdd("help stuff lololol");
+			default:
+				terminalAdd(curCommand + " is not a recognized command... try 'help'");
+		}			
 	}
 	
 	private function terminalAdd(termString:String):Void
