@@ -6,6 +6,7 @@ import flixel.addons.text.FlxTextField;
 import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
+using StringTools;
 
 class PlayState extends FlxState
 {
@@ -39,11 +40,29 @@ class PlayState extends FlxState
 	
 	private function commandParser(cmd:String):Void
 	{
+		cmd = cmd.toLowerCase();
 		
-		_grpPrevCommands.forEachAlive(function(t:FlxText){t.y -= 18; });
+		var commands = cmd.split(" ");
+		var curCommand = commands[0];
 		
-		var newText:FlxText = new FlxText(_commandLine.x, _commandLine.y - 20, 0, _commandLine.text, 16);
-		_grpPrevCommands.add(newText);
+		terminalAdd(cmd);
+		
+		if (curCommand == "help")
+		{
+			terminalAdd("this\nis\ntest boyyyy");
+		}
+		
+		
 			
+	}
+	
+	private function terminalAdd(termString:String):Void
+	{
+		
+		var newText:FlxText = new FlxText(_commandLine.x, 0, 0, termString, 16);
+		newText.y = _commandLine.y - 20 * newText.textField.numLines;
+		_grpPrevCommands.forEachAlive(function(t:FlxText){t.y -= 20 * newText.textField.numLines; });
+		
+		_grpPrevCommands.add(newText);
 	}
 }
