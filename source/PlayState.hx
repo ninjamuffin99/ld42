@@ -6,14 +6,16 @@ import flixel.FlxState;
 import flixel.addons.text.FlxTextField;
 import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxMath;
 import flixel.text.FlxText;
 using StringTools;
 
 class PlayState extends FlxState
 {
 	private var _commandLine:FlxInputText;
-	
 	private var _grpPrevCommands:FlxTypedGroup<FlxText>;
+	
+	private var _txtTimer:FlxText;
 	
 	private var listCommands:Array<String> = 
 	[
@@ -25,7 +27,8 @@ class PlayState extends FlxState
 	
 	private var grpDrives:FlxTypedGroup<DriveSprite>;
 	
-	
+	private var downloadTimer:Float = 0;
+	private var timerNeeded:Float = 20;
 	
 	override public function create():Void
 	{
@@ -38,6 +41,9 @@ class PlayState extends FlxState
 		
 		grpDrives = new FlxTypedGroup<DriveSprite>();
 		add(grpDrives);
+		
+		_txtTimer = new FlxText(20, 20, 0, "", 16);
+		add(_txtTimer);
 		
 		var driveCount:Int = 0;
 		
@@ -57,12 +63,25 @@ class PlayState extends FlxState
 			}
 		}
 		
+		downloadTimer = timerNeeded;
+		
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		
+		_txtTimer.text = FlxMath.roundDecimal(downloadTimer, 2) + "s until new downloads";
+		
+		downloadTimer -= elapsed;
+		
+		if (downloadTimer <= 0)
+		{
+			downloadFiles();
+			timerNeeded *= 0.9;
+			downloadTimer = timerNeeded;
+		}
 		
 		if (_commandLine.hasFocus && FlxG.keys.justPressed.ENTER)
 		{
@@ -87,7 +106,8 @@ class PlayState extends FlxState
 		switch(curCommand)
 		{
 			case "help":
-				terminalAdd("help stuff lololol");
+				terminalAdd("driveinfo - gives you information for each installed drive");
+				terminalAdd("push <input> <output> - moves every file from the input drive to the output drive");
 			case "driveinfo":
 				for (i in 0...grpDrives.members.length)
 				{
@@ -97,11 +117,11 @@ class PlayState extends FlxState
 					terminalAdd("Max Capacity: " + grpDrives.members[i].maxCap + "GB\n");
 				}
 			case "push":
-				var input:Int = Std.parseInt(commands[1]) - 1;
-				var output:Int = Std.parseInt(commands[2]) - 1;
+				var input:Int = Std.parseInt(commands[1]);
+				var output:Int = Std.parseInt(commands[2]);
 				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
 				// whereas if I use input/outputDrive variables, I cant check for null
-				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null)
+				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
 				{
 					var itemsMoved:Int = 0;
 					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
@@ -118,12 +138,8 @@ class PlayState extends FlxState
 					
 					}
 					
-					var shit:Int = 0;
-					terminalAdd(grpDrives.members[input].filesArray[0].length);
 					for (i in 0...grpDrives.members[input].filesArray[0].length)
-					{
-						shit += 1;
-						
+					{	
 						grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[0][i - 1]);
 						grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[1][i - 1]);
 					}
@@ -133,11 +149,11 @@ class PlayState extends FlxState
 					
 					
 					terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
-					terminalAdd(shit + " from drive " + input + " to drive " + output);
 				}
 				else
 				{
-					terminalAdd("Error in input, expects drive numbers between 1-3 in parameters");
+					var drvJunk = grpDrives.length - 1;
+					terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in parameters");
 				}
 			default:
 				terminalAdd(curCommand + " is not a recognized command... try 'help'");
@@ -154,5 +170,18 @@ class PlayState extends FlxState
 		_grpPrevCommands.forEachAlive(function(t:FlxText){t.y -= 20 * newText.textField.numLines; });
 		
 		_grpPrevCommands.add(newText);
+	}
+	
+	private function downloadFiles():Void
+	{
+		for (i in grpDrives.members)
+		{
+			var filesAmount = FlxG.random.int(0, 6);
+			while (filesAmount > 0)
+			{
+				i.addFile(FlxG.random.getObject(DriveSprite.fileTypes));
+				filesAmount -= 1;
+			}
+		}
 	}
 }

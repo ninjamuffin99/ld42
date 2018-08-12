@@ -51,7 +51,7 @@ class DriveSprite extends FlxSpriteGroup
 		switch (driveType)
 		{
 			case HDD:
-				maxCap = 1000;
+				maxCap = 500;
 			case SSD:
 				maxCap = 128;
 			case USB:
