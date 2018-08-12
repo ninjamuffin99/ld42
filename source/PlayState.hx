@@ -103,24 +103,37 @@ class PlayState extends FlxState
 				// whereas if I use input/outputDrive variables, I cant check for null
 				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null)
 				{
-					
-					grpDrives.members[input].grpFiles.forEach(function(s:FlxSprite)
+					var itemsMoved:Int = 0;
+					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
+					while (grpDrives.members[input].grpFiles.length > 0)
 					{
-						grpDrives.members[output].grpFiles.add(s);
-						
-						grpDrives.members[input].grpFiles.remove(s, true);
-						
-					});
+						grpDrives.members[input].grpFiles.forEachExists(function(s:FlxSprite)
+						{
+							grpDrives.members[output].grpFiles.add(s);
+							grpDrives.members[input].grpFiles.remove(s, true);
+							
+							itemsMoved += 1;
+							
+						});
 					
-					grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[0]);
-					grpDrives.members[output].filesArray[1].push(grpDrives.members[input].filesArray[1]);
+					}
+					
+					var shit:Int = 0;
+					terminalAdd(grpDrives.members[input].filesArray[0].length);
+					for (i in 0...grpDrives.members[input].filesArray[0].length)
+					{
+						shit += 1;
+						
+						grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[0][i - 1]);
+						grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[1][i - 1]);
+					}
 					
 					grpDrives.members[input].filesArray[0] = [];
 					grpDrives.members[input].filesArray[1] = [];
 					
 					
-					terminalAdd(input);
-					terminalAdd(output);
+					terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
+					terminalAdd(shit + " from drive " + input + " to drive " + output);
 				}
 				else
 				{

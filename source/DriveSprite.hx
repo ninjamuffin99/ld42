@@ -64,7 +64,7 @@ class DriveSprite extends FlxSpriteGroup
 	override public function update(elapsed:Float):Void 
 	{
 		
-		grpFiles.forEachAlive(function(spr:FlxSprite)
+		grpFiles.forEach(function(spr:FlxSprite)
 		{
 			var arrayPos = grpFiles.members.indexOf(spr);
 			var prevSpr:FlxSprite;
@@ -94,28 +94,29 @@ class DriveSprite extends FlxSpriteGroup
 		super.update(elapsed);
 	}
 	
-	public function addFile(fileType:String = ""):Void
+	public function addFile(fileType:String = "", sizeGB:Float = 0):Void
 	{
-		var sizeGB:Float = 0;
 		var fileColor:Int = 0;
-		
-		switch(fileType)
+		if (sizeGB == 0)
 		{
-			case "mp3":
-				sizeGB = 0.1;
-				fileColor = FlxColor.GREEN;
-			case "mp4":
-				sizeGB = FlxG.random.float(0.1, 5);
-				fileColor = FlxColor.RED;
-			case "os":
-				sizeGB = 3;
-				fileColor = FlxColor.GRAY;
-			case "doc":
-				sizeGB = FlxG.random.float(0.01, 0.5);
-				fileColor = FlxColor.BLUE;
-			default:
-				sizeGB = 20;
-				fileColor = FlxColor.YELLOW;
+			switch(fileType)
+			{
+				case "mp3":
+					sizeGB = 0.1;
+					fileColor = FlxColor.GREEN;
+				case "mp4":
+					sizeGB = FlxG.random.float(0.1, 5);
+					fileColor = FlxColor.RED;
+				case "os":
+					sizeGB = 3;
+					fileColor = FlxColor.GRAY;
+				case "doc":
+					sizeGB = FlxG.random.float(0.01, 0.5);
+					fileColor = FlxColor.BLUE;
+				default:
+					sizeGB = 20;
+					fileColor = FlxColor.YELLOW;
+			}
 		}
 		
 		var newFile:FlxSprite = new FlxSprite(0, 0);
