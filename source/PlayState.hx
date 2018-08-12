@@ -19,7 +19,10 @@ class PlayState extends FlxState
 		"help"
 	];
 	
+
 	private var stinky = "help";
+	
+	
 	
 	override public function create():Void
 	{
@@ -28,6 +31,9 @@ class PlayState extends FlxState
 		
 		_grpPrevCommands = new FlxTypedGroup<FlxText>();
 		add(_grpPrevCommands);
+		
+		var hdd:DriveSprite = new DriveSprite(0, 0, DriveSprite.HDD);
+		add(hdd);
 		
 		super.create();
 	}
