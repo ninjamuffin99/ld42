@@ -22,6 +22,8 @@ class PlayState extends FlxState
 
 	private var stinky = "help";
 	
+	private var grpDrives:FlxTypedGroup<DriveSprite>;
+	
 	
 	
 	override public function create():Void
@@ -32,8 +34,26 @@ class PlayState extends FlxState
 		_grpPrevCommands = new FlxTypedGroup<FlxText>();
 		add(_grpPrevCommands);
 		
-		var hdd:DriveSprite = new DriveSprite(0, 0, DriveSprite.HDD);
-		add(hdd);
+		grpDrives = new FlxTypedGroup<DriveSprite>();
+		add(grpDrives);
+		
+		var driveCount:Int = 0;
+		
+		var driveTypes = ["ssd", "hdd", "usb"];
+		while (driveCount < 3)
+		{
+			var newDrive:DriveSprite = new DriveSprite(FlxG.width / 3 * driveCount, 0, FlxG.random.getObject(driveTypes));
+			grpDrives.add(newDrive);
+			
+			driveCount += 1;
+			
+			var randoFiles:Int = FlxG.random.int(1, 6);
+			while (randoFiles > 0)
+			{
+				newDrive.addFile(FlxG.random.getObject(DriveSprite.fileTypes));
+				randoFiles -= 1;
+			}
+		}
 		
 		super.create();
 	}
