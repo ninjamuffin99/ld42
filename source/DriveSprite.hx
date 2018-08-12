@@ -32,8 +32,6 @@ class DriveSprite extends FlxSpriteGroup
 	{
 		super(X, Y);
 		
-		width = FlxG.width / 3;
-		
 		grpFiles = new FlxSpriteGroup();
 		add(grpFiles);
 		
@@ -52,7 +50,6 @@ class DriveSprite extends FlxSpriteGroup
 	
 	override public function update(elapsed:Float):Void 
 	{
-		grpFiles.forEach(function(spr:FlxSprite){});
 		
 		super.update(elapsed);
 	}
@@ -62,6 +59,7 @@ class DriveSprite extends FlxSpriteGroup
 		var newFile:FlxSprite = new FlxSprite(0, 0);
 		newFile.makeGraphic(Std.int(FlxG.width / 3), Std.int(fileSizeRatio(sizeGB)));
 		grpFiles.add(newFile);
+		
 		
 		filesArray[0].push(sizeGB);
 		filesArray[1].push(fileType);
