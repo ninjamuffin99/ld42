@@ -35,7 +35,7 @@ class DriveSprite extends FlxSpriteGroup
 		grpFiles = new FlxSpriteGroup();
 		add(grpFiles);
 		
-		addFile();
+		
 		
 		switch (driveType)
 		{
@@ -46,6 +46,8 @@ class DriveSprite extends FlxSpriteGroup
 			case USB:
 				maxCap = 32;
 		}
+		
+		addFile();
 	}
 	
 	override public function update(elapsed:Float):Void 
@@ -57,7 +59,7 @@ class DriveSprite extends FlxSpriteGroup
 	public function addFile(sizeGB:Float = 500, fileType:String = ""):Void
 	{
 		var newFile:FlxSprite = new FlxSprite(0, 0);
-		newFile.makeGraphic(Std.int(FlxG.width / 3), Std.int(fileSizeRatio(sizeGB)));
+		newFile.makeGraphic(Std.int(FlxG.width / 3), Std.int(FlxMath.remapToRange(sizeGB, 0, maxCap, 0, FlxG.height)));
 		grpFiles.add(newFile);
 		
 		
