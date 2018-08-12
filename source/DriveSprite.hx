@@ -21,13 +21,7 @@ class DriveSprite extends FlxSpriteGroup
 	
 	public var maxCap:Float = 0;
 	
-	public var filesArray:Array<Dynamic> = 
-	[
-		[], // size
-		[]	// fileType
-	];
-	
-	public var grpFiles:FlxSpriteGroup;
+	public var grpFiles:FlxTypedSpriteGroup<FileSprite>;
 	
 	public static var fileTypes:Array<String> = 
 	[
@@ -43,7 +37,7 @@ class DriveSprite extends FlxSpriteGroup
 	{
 		super(X, Y);
 		
-		grpFiles = new FlxSpriteGroup();
+		grpFiles = new FlxTypedSpriteGroup<FileSprite>();
 		add(grpFiles);
 		
 		this.driveType = driveType;
@@ -64,28 +58,28 @@ class DriveSprite extends FlxSpriteGroup
 	override public function update(elapsed:Float):Void 
 	{
 		
-		grpFiles.forEach(function(spr:FlxSprite)
+		grpFiles.forEach(function(spr:FileSprite)
 		{
 			var arrayPos = grpFiles.members.indexOf(spr);
 			var prevSpr:FlxSprite;
 			if (arrayPos > 0)
 			{
 				prevSpr = grpFiles.members[arrayPos - 1];
-				spr.y = prevSpr.y + prevSpr.height;
+				spr.y = prevSpr.y + prevSpr.height + 2;
 			}
 			else
 			{
-				spr.y = 0;
+				spr.y = 20;
 			}
 			
-			spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(filesArray[0][arrayPos])));
+			spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(spr.size)));
 			spr.updateHitbox();
 			
-			if (filesArray[1][arrayPos] == "doc")
+			if (spr.fileType == "doc")
 			{
 				if (FlxG.random.bool(2))
 				{
-					filesArray[0][arrayPos] += FlxG.random.float(0.01, 0.03);
+					spr.size += FlxG.random.float(0.01, 0.03);
 				}
 			}
 			
@@ -119,13 +113,11 @@ class DriveSprite extends FlxSpriteGroup
 			}
 		}
 		
-		var newFile:FlxSprite = new FlxSprite(0, 0);
+		var newFile:FileSprite = new FileSprite(0, 0);
 		newFile.makeGraphic(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(sizeGB)), fileColor);
+		newFile.size = sizeGB;
+		newFile.fileType = fileType;
 		grpFiles.add(newFile);
-		
-		
-		filesArray[0].push(sizeGB);
-		filesArray[1].push(fileType);
 	}
 	
 	public function fileSizeRatio(size:Float):Float

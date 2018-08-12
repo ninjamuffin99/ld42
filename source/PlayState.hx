@@ -119,34 +119,38 @@ class PlayState extends FlxState
 			case "push":
 				var input:Int = Std.parseInt(commands[1]);
 				var output:Int = Std.parseInt(commands[2]);
+				terminalAdd(commands[3]);
 				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
 				// whereas if I use input/outputDrive variables, I cant check for null
 				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
 				{
 					var itemsMoved:Int = 0;
 					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
-					while (grpDrives.members[input].grpFiles.length > 0)
+					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
+					while (moveableItems > 0)
 					{
-						grpDrives.members[input].grpFiles.forEachExists(function(s:FlxSprite)
+						grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 						{
-							grpDrives.members[output].grpFiles.add(s);
-							grpDrives.members[input].grpFiles.remove(s, true);
+							if (commands[3] == null)
+							{
+								grpDrives.members[output].grpFiles.add(s);
+								grpDrives.members[input].grpFiles.remove(s, true);
+								
+								itemsMoved += 1;
+							}
+							else
+							{
+								if (s.fileType == commands[3])
+								{
+									grpDrives.members[output].grpFiles.add(s);
+									grpDrives.members[input].grpFiles.remove(s, true);
+									itemsMoved += 1;
+								}
+							}
 							
-							itemsMoved += 1;
-							
+							moveableItems -= 1;
 						});
-					
 					}
-					
-					for (i in 0...grpDrives.members[input].filesArray[0].length)
-					{	
-						grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[0][i - 1]);
-						grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[1][i - 1]);
-					}
-					
-					grpDrives.members[input].filesArray[0] = [];
-					grpDrives.members[input].filesArray[1] = [];
-					
 					
 					terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
 				}
