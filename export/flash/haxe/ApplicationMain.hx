@@ -30,6 +30,22 @@ class ApplicationMain {
 		var types = [];
 		
 		
+		urls.push ("Consolas");
+		types.push (lime.Assets.AssetType.FONT);
+		
+		
+		urls.push ("Consolas Bold");
+		types.push (lime.Assets.AssetType.FONT);
+		
+		
+		urls.push ("Consolas Italic");
+		types.push (lime.Assets.AssetType.FONT);
+		
+		
+		urls.push ("Consolas Bold Italic");
+		types.push (lime.Assets.AssetType.FONT);
+		
+		
 		urls.push ("assets/data/data-goes-here.txt");
 		types.push (lime.Assets.AssetType.TEXT);
 		
@@ -251,7 +267,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "68",
+			build: "87",
 			company: "HaxeFlixel",
 			file: "ld42",
 			fps: 60,

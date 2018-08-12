@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.text.FlxTextField;
 import flixel.addons.ui.FlxInputText;
@@ -29,6 +30,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		_commandLine = new FlxInputText(20, FlxG.height - 20, FlxG.width - 40, "", 16);
+		_commandLine.font = "assets/data/CONSOLA.TTF";
 		add(_commandLine);
 		
 		_grpPrevCommands = new FlxTypedGroup<FlxText>();
@@ -92,16 +94,49 @@ class PlayState extends FlxState
 					var driveKind:String = grpDrives.members[i].driveType;
 					driveKind.toUpperCase();
 					terminalAdd("Drive " + i + ": " + driveKind);
+					terminalAdd("Max Capacity: " + grpDrives.members[i].maxCap + "GB\n");
+				}
+			case "push":
+				var input:Int = Std.parseInt(commands[1]) - 1;
+				var output:Int = Std.parseInt(commands[2]) - 1;
+				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
+				// whereas if I use input/outputDrive variables, I cant check for null
+				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null)
+				{
+					
+					grpDrives.members[input].grpFiles.forEach(function(s:FlxSprite)
+					{
+						grpDrives.members[output].grpFiles.add(s);
+						
+						grpDrives.members[input].grpFiles.remove(s, true);
+						
+					});
+					
+					grpDrives.members[output].filesArray[0].push(grpDrives.members[input].filesArray[0]);
+					grpDrives.members[output].filesArray[1].push(grpDrives.members[input].filesArray[1]);
+					
+					grpDrives.members[input].filesArray[0] = [];
+					grpDrives.members[input].filesArray[1] = [];
+					
+					
+					terminalAdd(input);
+					terminalAdd(output);
+				}
+				else
+				{
+					terminalAdd("Error in input, expects drive numbers between 1-3 in parameters");
 				}
 			default:
 				terminalAdd(curCommand + " is not a recognized command... try 'help'");
 		}			
 	}
 	
-	private function terminalAdd(termString:String):Void
+	private function terminalAdd(termString:Dynamic):Void
 	{
+		termString = Std.string(termString);
 		
 		var newText:FlxText = new FlxText(_commandLine.x, 0, 0, termString, 16);
+		newText.font = "assets/data/CONSOLA.TTF";
 		newText.y = _commandLine.y - 20 * newText.textField.numLines;
 		_grpPrevCommands.forEachAlive(function(t:FlxText){t.y -= 20 * newText.textField.numLines; });
 		

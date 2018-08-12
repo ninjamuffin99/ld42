@@ -51,6 +51,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if (openfl && !flash)
 		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_data_consola_ttf);
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_data_consolab_ttf);
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_data_consolai_ttf);
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_data_consolaz_ttf);
 		
 		
 		
@@ -96,6 +100,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
+		className.set ("assets/data/CONSOLA.TTF", __ASSET__assets_data_consola_ttf);
+		type.set ("assets/data/CONSOLA.TTF", AssetType.FONT);
+		className.set ("assets/data/CONSOLAB.TTF", __ASSET__assets_data_consolab_ttf);
+		type.set ("assets/data/CONSOLAB.TTF", AssetType.FONT);
+		className.set ("assets/data/CONSOLAI.TTF", __ASSET__assets_data_consolai_ttf);
+		type.set ("assets/data/CONSOLAI.TTF", AssetType.FONT);
+		className.set ("assets/data/CONSOLAZ.TTF", __ASSET__assets_data_consolaz_ttf);
+		type.set ("assets/data/CONSOLAZ.TTF", AssetType.FONT);
 		className.set ("assets/data/data-goes-here.txt", __ASSET__assets_data_data_goes_here_txt);
 		type.set ("assets/data/data-goes-here.txt", AssetType.TEXT);
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
@@ -181,6 +193,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
+		id = "assets/data/CONSOLA.TTF";
+		className.set (id, __ASSET__assets_data_consola_ttf);
+		
+		type.set (id, AssetType.FONT);
+		id = "assets/data/CONSOLAB.TTF";
+		className.set (id, __ASSET__assets_data_consolab_ttf);
+		
+		type.set (id, AssetType.FONT);
+		id = "assets/data/CONSOLAI.TTF";
+		className.set (id, __ASSET__assets_data_consolai_ttf);
+		
+		type.set (id, AssetType.FONT);
+		id = "assets/data/CONSOLAZ.TTF";
+		className.set (id, __ASSET__assets_data_consolaz_ttf);
+		
+		type.set (id, AssetType.FONT);
 		id = "assets/data/data-goes-here.txt";
 		path.set (id, id);
 		
@@ -358,6 +386,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		
+		className.set ("assets/data/CONSOLA.TTF", __ASSET__assets_data_consola_ttf);
+		type.set ("assets/data/CONSOLA.TTF", AssetType.FONT);
+		
+		className.set ("assets/data/CONSOLAB.TTF", __ASSET__assets_data_consolab_ttf);
+		type.set ("assets/data/CONSOLAB.TTF", AssetType.FONT);
+		
+		className.set ("assets/data/CONSOLAI.TTF", __ASSET__assets_data_consolai_ttf);
+		type.set ("assets/data/CONSOLAI.TTF", AssetType.FONT);
+		
+		className.set ("assets/data/CONSOLAZ.TTF", __ASSET__assets_data_consolaz_ttf);
+		type.set ("assets/data/CONSOLAZ.TTF", AssetType.FONT);
 		
 		className.set ("assets/data/data-goes-here.txt", __ASSET__assets_data_data_goes_here_txt);
 		type.set ("assets/data/data-goes-here.txt", AssetType.TEXT);
@@ -1123,6 +1163,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if !display
 #if flash
 
+@:keep @:bind #if display private #end class __ASSET__assets_data_consola_ttf extends flash.text.Font { }
+@:keep @:bind #if display private #end class __ASSET__assets_data_consolab_ttf extends flash.text.Font { }
+@:keep @:bind #if display private #end class __ASSET__assets_data_consolai_ttf extends flash.text.Font { }
+@:keep @:bind #if display private #end class __ASSET__assets_data_consolaz_ttf extends flash.text.Font { }
 @:keep @:bind #if display private #end class __ASSET__assets_data_data_goes_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
@@ -1167,6 +1211,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 #elseif html5
 
+@:keep #if display private #end class __ASSET__assets_data_consola_ttf extends lime.text.Font { public function new () { super (); name = "Consolas"; } } 
+@:keep #if display private #end class __ASSET__assets_data_consolab_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold"; } } 
+@:keep #if display private #end class __ASSET__assets_data_consolai_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Italic"; } } 
+@:keep #if display private #end class __ASSET__assets_data_consolaz_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold Italic"; } } 
 
 
 
@@ -1216,6 +1264,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if (windows || mac || linux || cpp)
 
 
+@:font("assets/data/CONSOLA.TTF") #if display private #end class __ASSET__assets_data_consola_ttf extends lime.text.Font {}
+@:font("assets/data/CONSOLAB.TTF") #if display private #end class __ASSET__assets_data_consolab_ttf extends lime.text.Font {}
+@:font("assets/data/CONSOLAI.TTF") #if display private #end class __ASSET__assets_data_consolai_ttf extends lime.text.Font {}
+@:font("assets/data/CONSOLAZ.TTF") #if display private #end class __ASSET__assets_data_consolaz_ttf extends lime.text.Font {}
 @:file("assets/data/data-goes-here.txt") #if display private #end class __ASSET__assets_data_data_goes_here_txt extends lime.utils.Bytes {}
 @:file("assets/images/images-go-here.txt") #if display private #end class __ASSET__assets_images_images_go_here_txt extends lime.utils.Bytes {}
 @:file("assets/music/music-goes-here.txt") #if display private #end class __ASSET__assets_music_music_goes_here_txt extends lime.utils.Bytes {}
@@ -1263,6 +1315,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 #end
 
 #if (openfl && !flash)
+@:keep #if display private #end class __ASSET__OPENFL__assets_data_consola_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__assets_data_consola_ttf (); src = font.src; name = font.name; super (); }}
+@:keep #if display private #end class __ASSET__OPENFL__assets_data_consolab_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__assets_data_consolab_ttf (); src = font.src; name = font.name; super (); }}
+@:keep #if display private #end class __ASSET__OPENFL__assets_data_consolai_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__assets_data_consolai_ttf (); src = font.src; name = font.name; super (); }}
+@:keep #if display private #end class __ASSET__OPENFL__assets_data_consolaz_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__assets_data_consolaz_ttf (); src = font.src; name = font.name; super (); }}
 @:keep #if display private #end class __ASSET__OPENFL__flixel_fonts_nokiafc22_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__flixel_fonts_nokiafc22_ttf (); src = font.src; name = font.name; super (); }}
 @:keep #if display private #end class __ASSET__OPENFL__flixel_fonts_monsterrat_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__flixel_fonts_monsterrat_ttf (); src = font.src; name = font.name; super (); }}
 

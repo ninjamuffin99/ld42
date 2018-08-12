@@ -73,6 +73,10 @@ class DriveSprite extends FlxSpriteGroup
 				prevSpr = grpFiles.members[arrayPos - 1];
 				spr.y = prevSpr.y + prevSpr.height;
 			}
+			else
+			{
+				spr.y = 0;
+			}
 			
 			spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(filesArray[0][arrayPos])));
 			spr.updateHitbox();
