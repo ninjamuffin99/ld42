@@ -86,6 +86,13 @@ class PlayState extends FlxState
 		{
 			case "help":
 				terminalAdd("help stuff lololol");
+			case "driveinfo":
+				for (i in 0...grpDrives.members.length)
+				{
+					var driveKind:String = grpDrives.members[i].driveType;
+					driveKind.toUpperCase();
+					terminalAdd("Drive " + i + ": " + driveKind);
+				}
 			default:
 				terminalAdd(curCommand + " is not a recognized command... try 'help'");
 		}			

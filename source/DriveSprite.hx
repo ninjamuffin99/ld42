@@ -23,8 +23,8 @@ class DriveSprite extends FlxSpriteGroup
 	
 	public var filesArray:Array<Dynamic> = 
 	[
-		[],
-		[]
+		[], // size
+		[]	// fileType
 	];
 	
 	public var grpFiles:FlxSpriteGroup;
@@ -36,6 +36,8 @@ class DriveSprite extends FlxSpriteGroup
 		"os",
 		"doc"
 	];
+	
+	public var driveType:String = "";
 
 	public function new(X:Float=0, Y:Float=0, driveType:String = "hdd") 
 	{
@@ -44,7 +46,7 @@ class DriveSprite extends FlxSpriteGroup
 		grpFiles = new FlxSpriteGroup();
 		add(grpFiles);
 		
-		
+		this.driveType = driveType;
 		
 		switch (driveType)
 		{
@@ -72,7 +74,16 @@ class DriveSprite extends FlxSpriteGroup
 				spr.y = prevSpr.y + prevSpr.height;
 			}
 			
+			spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(filesArray[0][arrayPos])));
+			spr.updateHitbox();
 			
+			if (filesArray[1][arrayPos] == "doc")
+			{
+				if (FlxG.random.bool(2))
+				{
+					filesArray[0][arrayPos] += FlxG.random.float(0.01, 0.03);
+				}
+			}
 			
 		});
 		
