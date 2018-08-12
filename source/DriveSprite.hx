@@ -18,7 +18,7 @@ class DriveSprite extends FlxSpriteGroup
 	public static inline var SSD:String = "ssd";
 	public static inline var USB:String = "usb";
 	
-	
+	public var curSize:Float = 0;
 	public var maxCap:Float = 0;
 	
 	public var grpFiles:FlxTypedSpriteGroup<FileSprite>;
@@ -29,6 +29,13 @@ class DriveSprite extends FlxSpriteGroup
 		"mp4",
 		"os",
 		"doc"
+	];
+	
+	public static var driveTypes:Array<String> = 
+	[
+		"hdd",
+		"ssd",
+		"usb"
 	];
 	
 	public var driveType:String = "";
@@ -58,6 +65,18 @@ class DriveSprite extends FlxSpriteGroup
 	override public function update(elapsed:Float):Void 
 	{
 		
+		
+		switch (driveType)
+		{
+			case HDD:
+				maxCap = 500;
+			case SSD:
+				maxCap = 128;
+			case USB:
+				maxCap = 32;
+		}
+		
+		var fileSizeAdd:Float = 0;
 		grpFiles.forEach(function(spr:FileSprite)
 		{
 			var arrayPos = grpFiles.members.indexOf(spr);
@@ -83,7 +102,10 @@ class DriveSprite extends FlxSpriteGroup
 				}
 			}
 			
+			fileSizeAdd += spr.size;
 		});
+		
+		curSize = FlxMath.roundDecimal(fileSizeAdd, 2);
 		
 		super.update(elapsed);
 	}

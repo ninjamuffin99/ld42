@@ -8,6 +8,7 @@ import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
+import flixel.util.FlxTimer;
 using StringTools;
 
 class PlayState extends FlxState
@@ -29,6 +30,8 @@ class PlayState extends FlxState
 	
 	private var downloadTimer:Float = 0;
 	private var timerNeeded:Float = 20;
+	
+	private var points:Float = 0;
 	
 	override public function create():Void
 	{
@@ -158,6 +161,37 @@ class PlayState extends FlxState
 				{
 					var drvJunk = grpDrives.length - 1;
 					terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in parameters");
+				}
+			case "eject":
+				var input:Int = Std.parseInt(commands[1]);
+				if (Std.parseInt(commands[1]) != null && FlxMath.inBounds(input, 0, 2))
+				{
+					points += grpDrives.members[input].curSize;
+					terminalAdd("Ejected drive " + input + " - " + grpDrives.members[input].curSize + "GB of data");
+					
+					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
+					while (moveableItems > 0)
+					{
+						grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+						{
+							grpDrives.members[input].grpFiles.remove(s, true);
+							
+							moveableItems -= 1;
+						});
+					}
+					
+					grpDrives.members[input].driveType = FlxG.random.getObject(DriveSprite.driveTypes);
+					
+					new FlxTimer().start(FlxG.random.float(1, 4), 
+										function(t:FlxTimer)
+										{
+											terminalAdd("Inserted an empty " + grpDrives.members[input].driveType + " in slot " + input + " with " + grpDrives.members[input].maxCap + "GB of free space");
+										}, 1);
+				}
+				else
+				{
+					var drvJunk = grpDrives.length - 1;
+					terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in input");
 				}
 			default:
 				terminalAdd(curCommand + " is not a recognized command... try 'help'");
