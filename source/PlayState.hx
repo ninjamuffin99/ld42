@@ -267,13 +267,12 @@ class PlayState extends FlxState
 					
 					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
 					
-					
 					var itemsMoved:Int = 0;
 					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
 					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
 					
 					if (commands[3] != null)
-						moveSpeed *= 0.3;
+						moveSpeed *= 0.2;
 					
 					terminalAdd("Please wait...moving files");
 					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
@@ -323,25 +322,29 @@ class PlayState extends FlxState
 					points += grpDrives.members[input].curSize;
 					terminalAdd("Ejecting drive " + input + " - " + grpDrives.members[input].curSize + "GB of data, please wait");
 					
-					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
-					while (moveableItems > 0)
+					new FlxTimer().start(grpDrives.members[input].ejectSpeed, function(t:FlxTimer)
 					{
-						grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+						var moveableItems:Int = grpDrives.members[input].grpFiles.length;
+						while (moveableItems > 0)
 						{
-							grpDrives.members[input].grpFiles.remove(s, true);
-							
-							moveableItems -= 1;
-						});
-					}
+							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+							{
+								grpDrives.members[input].grpFiles.remove(s, true);
+								
+								moveableItems -= 1;
+							});
+						}
+						
+						grpDrives.members[input].driveType = FlxG.random.getObject(DriveSprite.driveTypes);
+						
+						cooldown = FlxG.random.float(1, grpDrives.members[input].curSize * 0.0007);
+						new FlxTimer().start(cooldown, 
+											function(t:FlxTimer)
+											{
+												terminalAdd("Inserted an empty " + grpDrives.members[input].driveType + " in slot " + input + " with " + grpDrives.members[input].maxCap + "GB of free space");
+											});
+					});
 					
-					grpDrives.members[input].driveType = FlxG.random.getObject(DriveSprite.driveTypes);
-					
-					cooldown = FlxG.random.float(1, grpDrives.members[input].curSize * 0.0007);
-					new FlxTimer().start(cooldown, 
-										function(t:FlxTimer)
-										{
-											terminalAdd("Inserted an empty " + grpDrives.members[input].driveType + " in slot " + input + " with " + grpDrives.members[input].maxCap + "GB of free space");
-										}, 1);
 				}
 				else
 				{
