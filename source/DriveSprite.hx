@@ -169,7 +169,7 @@ class DriveSprite extends FlxSpriteGroup
 	
 	public function fileSizeRatio(size:Float):Float
 	{
-		return FlxMath.remapToRange(size, 0, maxCap, 0, FlxG.height * 0.7);
+		return FlxMath.remapToRange(size, 0, maxCap, 0, 404);
 	}
 	
 }

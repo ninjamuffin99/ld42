@@ -9,6 +9,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.system.debug.console.ConsoleCommands;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 using StringTools;
 
@@ -45,8 +46,10 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
-		_commandLine = new FlxInputText(20, FlxG.height - 40, FlxG.width - 40, "", 16);
+		_commandLine = new FlxInputText(20, FlxG.height - 31, FlxG.width - 40, "", 16, FlxColor.WHITE);
 		_commandLine.font = "assets/data/CONSOLA.TTF";
+		_commandLine.background = false;
+		_commandLine.caretWidth = 3;
 		add(_commandLine);
 		
 		_grpPrevCommands = new FlxTypedGroup<FlxText>();
@@ -101,12 +104,26 @@ class PlayState extends FlxState
 		FlxG.sound.volumeDownKeys = null;
 		FlxG.sound.muteKeys = null;
 		
+		var bordersOverlay:FlxSprite = new FlxSprite(0, 0).loadGraphic(AssetPaths.borders__png);
+		add(bordersOverlay);
+		
+		FlxG.sound.playMusic("assets/music/760401_Eyescaffe---8-bit.mp3", 0.3);
+		
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		
+		if (FlxG.keys.justPressed.ANY)
+		{
+			FlxG.sound.play("assets/sounds/keyClickOn" + FlxG.random.int(1, 4) + ".mp3");
+		}
+		if (FlxG.keys.justReleased.ANY)
+		{
+			FlxG.sound.play("assets/sounds/keyClickRelease" + FlxG.random.int(1, 4) + ".mp3");
+		}
 		
 		_txtTimer.text = FlxMath.roundDecimal(downloadTimer, 2) + "s until new downloads";
 		bombSprite.x = grpDrives.members[virusDrive].getMidpoint().x - 20;
@@ -198,7 +215,7 @@ class PlayState extends FlxState
 			case 1:
 				// visuals get messed up
 			case 2:
-				// audio gets messed up
+				FlxG.sound.music.volume = 0;
 		}
 	}
 	
