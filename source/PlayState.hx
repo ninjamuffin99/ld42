@@ -20,8 +20,10 @@ class PlayState extends FlxState
 	
 	private var listCommands:Array<String> = 
 	[
-		"help"
+		""
 	];
+	
+	private var commandHistory:Int = -1;
 	
 
 	private var stinky = "help";
@@ -97,6 +99,11 @@ class PlayState extends FlxState
 			
 		}
 		
+		if ((FlxG.keys.pressed.L && FlxG.keys.justPressed.CONTROL) || (FlxG.keys.justPressed.L && FlxG.keys.pressed.CONTROL))
+		{
+			clearTerm();
+		}
+		
 		if (cooldown > 0)
 		{
 			cooldown -= elapsed;
@@ -106,11 +113,39 @@ class PlayState extends FlxState
 		
 		if (_commandLine.hasFocus && FlxG.keys.justPressed.ENTER)
 		{
-			
+			listCommands.push(_commandLine.text);
 			commandParser(_commandLine.text);
 			
 			_commandLine.text = "";
 			_commandLine.caretIndex = 0;
+			commandHistory = -1;
+		}
+		
+		if (FlxG.keys.justPressed.UP)
+		{
+			if (commandHistory == -1 && listCommands.length >= 0)
+			{
+				commandHistory = listCommands.length - 1;
+				
+				_commandLine.text = listCommands[commandHistory];
+				_commandLine.caretIndex = _commandLine.text.length;
+			}
+			else if (commandHistory > 0)
+			{
+				commandHistory -= 1;
+				_commandLine.text = listCommands[commandHistory];
+				_commandLine.caretIndex = _commandLine.text.length;
+			}
+		}
+		
+		if (FlxG.keys.justPressed.DOWN)
+		{
+			if (commandHistory < listCommands.length - 1 && commandHistory != -1)
+			{
+				commandHistory += 1;
+				_commandLine.text = listCommands[commandHistory];
+				_commandLine.caretIndex = _commandLine.text.length;
+			}
 		}
 		
 		var osCounter:Int = 0;
@@ -159,6 +194,7 @@ class PlayState extends FlxState
 				terminalAdd("tutorial				- sends some game info");
 				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
 				terminalAdd("credits					- shoutouts and also the goobers who made this game"); // dont knwo why but this needs an extra tab
+				terminalAdd("clear					- clears the terminal window");
 				terminalAdd("driveinfo				- gives you information for each installed drive");
 				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
 				terminalAdd("mute					- toggles mute");
@@ -209,6 +245,10 @@ class PlayState extends FlxState
 				}
 				terminalAdd("drive " + input + " has been wiped, " + itemsMoved + " files deleted");
 				
+			case "clear":
+				clearTerm();
+			case "clr":
+				clearTerm();
 			case "driveinfo":
 				for (i in 0...grpDrives.members.length)
 				{
@@ -404,5 +444,15 @@ class PlayState extends FlxState
 				filesAmount -= 1;
 			}
 		}
+	}
+	
+	private function clearTerm():Void
+	{
+		_grpPrevCommands.forEach(function(t:FlxText)
+			{
+				t.kill();
+			});
+			terminalAdd("terminal cleared", true);
+			
 	}
 }
