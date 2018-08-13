@@ -23,6 +23,11 @@ class DriveSprite extends FlxSpriteGroup
 	
 	public var grpFiles:FlxTypedSpriteGroup<FileSprite>;
 	
+	public var driveAvailable:Bool = true;
+	public var availTimer:Float = 0;
+	public var transferSpeed:Float = 0;
+	public var ejectSpeed:Float = 0;
+	
 	public static var fileTypes:Array<String> = 
 	[
 		"mp3",
@@ -68,10 +73,16 @@ class DriveSprite extends FlxSpriteGroup
 		{
 			case HDD:
 				maxCap = 500;
+				transferSpeed = 5;
+				ejectSpeed = 10;
 			case SSD:
 				maxCap = 128;
+				transferSpeed = 1;
+				ejectSpeed = 5;
 			case USB:
 				maxCap = 32;
+				transferSpeed = 7;
+				ejectSpeed = 0.2;
 		}
 		
 		var fileSizeAdd:Float = 0;

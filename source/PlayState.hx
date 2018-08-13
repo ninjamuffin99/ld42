@@ -240,37 +240,76 @@ class PlayState extends FlxState
 				// whereas if I use input/outputDrive variables, I cant check for null
 				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
 				{
+					var moveFileSize:Float = 0;
+					
+					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+					{
+						if (commands[3] == null)
+						{
+							moveFileSize += s.size;
+						}
+						else
+						{
+							if (s.fileType == commands[3])
+								moveFileSize += moveFileSize;
+						}
+					});
+					
+					
+					
+					if (moveFileSize + grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+					{
+						terminalAdd("Cannot complete action, drive " + output + " would be over max capacity (" + grpDrives.members[output].maxCap + "GB)");
+						terminalAdd("Try only pushing specific filetypes");
+						return;
+					}
+					var moveSpeed:Float = 0;
+					
+					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
+					
+					
 					var itemsMoved:Int = 0;
 					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
 					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
-					while (moveableItems > 0)
+					
+					if (commands[3] != null)
+						moveSpeed *= 0.3;
+					
+					terminalAdd("Please wait...moving files");
+					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
 					{
-						grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+						
+						while (moveableItems > 0)
 						{
-							if (commands[3] == null)
+							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 							{
-								grpDrives.members[output].grpFiles.add(s);
-								grpDrives.members[input].grpFiles.remove(s, true);
-								
-								itemsMoved += 1;
-							}
-							else
-							{
-								if (s.fileType == commands[3])
+								if (commands[3] == null)
 								{
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
+									
 									itemsMoved += 1;
 								}
-							}
-							
-							moveableItems -= 1;
-						});
-					}
+								else
+								{
+									if (s.fileType == commands[3])
+									{
+										grpDrives.members[output].grpFiles.add(s);
+										grpDrives.members[input].grpFiles.remove(s, true);
+										itemsMoved += 1;
+									}
+								}
+								
+								moveableItems -= 1;
+							});
+						}
+						
+						
+						terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
+						if (commands[3] != null)
+							terminalAdd("moved only " + commands[3] + " files to drive " + output);
+					});
 					
-					terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
-					if (commands[3] != null)
-						terminalAdd("moved only " + commands[3] + " files to drive " + output);
 				}
 				else
 				{
