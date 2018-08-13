@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.ui.FlxInputText;
@@ -31,7 +32,12 @@ class PlayState extends FlxState
 	private var grpDrives:FlxTypedGroup<DriveSprite>;
 	
 	private var downloadTimer:Float = 0;
+	private var virusTimer:Float = 15;
+	private var virusTimerNeeded:Float = 15;
 	private var timerNeeded:Float = 20;
+	
+	private var virusDrive:Int = 0;
+	private var bombSprite:FlxSprite;
 	
 	private var cooldown:Float = 0;
 	
@@ -73,6 +79,13 @@ class PlayState extends FlxState
 			}
 		}
 		
+		virusDrive = FlxG.random.int(0, grpDrives.length - 1);
+		
+		bombSprite = new FlxSprite(grpDrives.members[virusDrive].getMidpoint().x - 20, 200);
+		bombSprite.loadGraphic(AssetPaths.bomb__png, true, 40, 64);
+		bombSprite.animation.add("idle", [0, 1], 4);
+		bombSprite.animation.play("idle");
+		add(bombSprite);
 		
 		downloadTimer = timerNeeded;
 		
@@ -88,15 +101,23 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		
 		_txtTimer.text = FlxMath.roundDecimal(downloadTimer, 2) + "s until new downloads";
+		bombSprite.x = grpDrives.members[virusDrive].getMidpoint().x - 20;
+		
 		
 		downloadTimer -= elapsed;
+		virusTimer -= elapsed;
 		
 		if (downloadTimer <= 0)
 		{
 			downloadFiles();
 			timerNeeded *= 0.9;
 			downloadTimer = timerNeeded;
-			
+		}
+		
+		if (virusTimer <= 0)
+		{
+			virusDrive = FlxG.random.int(0, grpDrives.length - 1);
+			virusTimer = virusTimerNeeded;
 		}
 		
 		if ((FlxG.keys.pressed.L && FlxG.keys.justPressed.CONTROL) || (FlxG.keys.justPressed.L && FlxG.keys.pressed.CONTROL))

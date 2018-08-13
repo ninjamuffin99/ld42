@@ -9,13 +9,16 @@ import flixel.util.FlxColor;
  * ...
  * @author ...
  */
-class VirusSprite extends FlxSprite 
+class VirusSprite extends FileSprite 
 {
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
 		makeGraphic(Math.ceil(FlxG.width / 3), 50, FlxColor.PINK);
+		
+		infectionLines = 2;
+		infected = true;
 	}
 	
 }
