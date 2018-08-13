@@ -90,6 +90,10 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
+		urls.push ("assets/sounds/dabom.mp3");
+		types.push (lime.Assets.AssetType.MUSIC);
+		
+		
 		urls.push ("assets/sounds/keyClickOn1.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
@@ -331,7 +335,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "235",
+			build: "253",
 			company: "HaxeFlixel",
 			file: "ld42",
 			fps: 60,

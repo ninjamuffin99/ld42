@@ -39,6 +39,7 @@ class PlayState extends FlxState
 	
 	private var virusDrive:Int = 0;
 	private var bombSprite:FlxSprite;
+	private var bombCountdown:FlxText;
 	
 	private var cooldown:Float = 0;
 	
@@ -46,6 +47,11 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
+		FlxG.camera.bgColor = 0xFF53575d;
+		
+		var cmdBG:FlxSprite = new FlxSprite(0, 410).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		add(cmdBG);
+		
 		_commandLine = new FlxInputText(20, FlxG.height - 31, FlxG.width - 40, "", 16, FlxColor.WHITE);
 		_commandLine.font = "assets/data/CONSOLA.TTF";
 		_commandLine.background = false;
@@ -98,6 +104,10 @@ class PlayState extends FlxState
 		bombSprite.animation.play("idle");
 		add(bombSprite);
 		
+		bombCountdown = new FlxText(bombSprite.x, bombSprite.y + bombSprite.height, 0, "", 16);
+		bombCountdown.font = "assets/data/CONSOLA.TTF";
+		add(bombCountdown);
+		
 		downloadTimer = timerNeeded;
 		
 		FlxG.sound.volumeUpKeys = null;
@@ -107,7 +117,7 @@ class PlayState extends FlxState
 		var bordersOverlay:FlxSprite = new FlxSprite(0, 0).loadGraphic(AssetPaths.borders__png);
 		add(bordersOverlay);
 		
-		FlxG.sound.playMusic("assets/music/760401_Eyescaffe---8-bit.mp3", 0.05);
+		FlxG.sound.playMusic("assets/music/760401_Eyescaffe---8-bit.mp3", 0.35);
 		
 		super.create();
 	}
@@ -127,6 +137,8 @@ class PlayState extends FlxState
 		
 		_txtTimer.text = FlxMath.roundDecimal(downloadTimer, 2) + "s until new downloads";
 		bombSprite.x = grpDrives.members[virusDrive].getMidpoint().x - 20;
+		bombCountdown.x = bombSprite.x;
+		bombCountdown.text = FlxMath.roundDecimal(virusTimer, 2) + "s";
 		
 		
 		downloadTimer -= elapsed;
@@ -141,6 +153,7 @@ class PlayState extends FlxState
 		
 		if (virusTimer <= 0)
 		{
+			FlxG.sound.play(AssetPaths.dabom__mp3);
 			virusDrive = FlxG.random.int(0, grpDrives.length - 1);
 			virusTimer = virusTimerNeeded;
 		}

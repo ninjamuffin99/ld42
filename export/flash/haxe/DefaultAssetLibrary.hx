@@ -77,6 +77,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -146,6 +147,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/music/760401_Eyescaffe---8-bit.mp3", AssetType.MUSIC);
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", AssetType.TEXT);
+		className.set ("assets/sounds/dabom.mp3", __ASSET__assets_sounds_dabom_mp3);
+		type.set ("assets/sounds/dabom.mp3", AssetType.MUSIC);
 		className.set ("assets/sounds/keyClickOn1.mp3", __ASSET__assets_sounds_keyclickon1_mp3);
 		type.set ("assets/sounds/keyClickOn1.mp3", AssetType.MUSIC);
 		className.set ("assets/sounds/keyClickOn2.mp3", __ASSET__assets_sounds_keyclickon2_mp3);
@@ -301,6 +304,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.TEXT);
+		id = "assets/sounds/dabom.mp3";
+		path.set (id, id);
+		
+		type.set (id, AssetType.MUSIC);
 		id = "assets/sounds/keyClickOn1.mp3";
 		path.set (id, id);
 		
@@ -543,6 +550,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", AssetType.TEXT);
+		
+		className.set ("assets/sounds/dabom.mp3", __ASSET__assets_sounds_dabom_mp3);
+		type.set ("assets/sounds/dabom.mp3", AssetType.MUSIC);
 		
 		className.set ("assets/sounds/keyClickOn1.mp3", __ASSET__assets_sounds_keyclickon1_mp3);
 		type.set ("assets/sounds/keyClickOn1.mp3", AssetType.MUSIC);
@@ -1338,6 +1348,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_images_virus_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_760401_eyescaffe___8_bit_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__assets_sounds_dabom_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_keyclickon1_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_keyclickon2_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_keyclickon3_mp3 extends flash.media.Sound { }
@@ -1391,6 +1402,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep #if display private #end class __ASSET__assets_data_consolab_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold"; } } 
 @:keep #if display private #end class __ASSET__assets_data_consolai_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Italic"; } } 
 @:keep #if display private #end class __ASSET__assets_data_consolaz_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold Italic"; } } 
+
 
 
 
@@ -1471,6 +1483,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:image("assets/images/virus.png") #if display private #end class __ASSET__assets_images_virus_png extends lime.graphics.Image {}
 @:file("assets/music/760401_Eyescaffe---8-bit.mp3") #if display private #end class __ASSET__assets_music_760401_eyescaffe___8_bit_mp3 extends lime.utils.Bytes {}
 @:file("assets/music/music-goes-here.txt") #if display private #end class __ASSET__assets_music_music_goes_here_txt extends lime.utils.Bytes {}
+@:file("assets/sounds/dabom.mp3") #if display private #end class __ASSET__assets_sounds_dabom_mp3 extends lime.utils.Bytes {}
 @:file("assets/sounds/keyClickOn1.mp3") #if display private #end class __ASSET__assets_sounds_keyclickon1_mp3 extends lime.utils.Bytes {}
 @:file("assets/sounds/keyClickOn2.mp3") #if display private #end class __ASSET__assets_sounds_keyclickon2_mp3 extends lime.utils.Bytes {}
 @:file("assets/sounds/keyClickOn3.mp3") #if display private #end class __ASSET__assets_sounds_keyclickon3_mp3 extends lime.utils.Bytes {}

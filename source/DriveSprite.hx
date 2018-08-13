@@ -101,7 +101,7 @@ class DriveSprite extends FlxSpriteGroup
 			}
 			else
 			{
-				spr.y = 20;
+				spr.y = 5;
 			}
 			
 			spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(spr.size)));
@@ -169,7 +169,7 @@ class DriveSprite extends FlxSpriteGroup
 	
 	public function fileSizeRatio(size:Float):Float
 	{
-		return FlxMath.remapToRange(size, 0, maxCap, 0, 404);
+		return FlxMath.remapToRange(size, 0, maxCap, 0, 410);
 	}
 	
 }
