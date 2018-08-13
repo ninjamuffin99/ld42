@@ -163,6 +163,7 @@ class PlayState extends FlxState
 				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
 				terminalAdd("mute					- toggles mute");
 				terminalAdd("push <input> <output>	- moves every file from the input drive to the output drive");
+				terminalAdd("score					- checks your current score");
 				terminalAdd("screenshot				- take a screenshot and saves it");
 				terminalAdd("volume <volume>		- changes the volume between any value between 0 and 100");
 				
@@ -281,7 +282,7 @@ class PlayState extends FlxState
 				if (Std.parseInt(commands[1]) != null && FlxMath.inBounds(input, 0, 2))
 				{
 					points += grpDrives.members[input].curSize;
-					terminalAdd("Ejjecting drive " + input + " - " + grpDrives.members[input].curSize + "GB of data, please wait");
+					terminalAdd("Ejecting drive " + input + " - " + grpDrives.members[input].curSize + "GB of data, please wait");
 					
 					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
 					while (moveableItems > 0)
@@ -310,6 +311,8 @@ class PlayState extends FlxState
 			case "screenshot":
 				FlxScreenGrab.grab(null, true, true);
 				terminalAdd("screenshot taken");
+			case "score":
+				terminalAdd("You have " + points + " points (how many GBs you've ejected)");
 			default:
 				terminalAdd(curCommand + " is not a recognized command... try 'help'");
 		}			
