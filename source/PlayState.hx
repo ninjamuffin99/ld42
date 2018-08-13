@@ -104,25 +104,36 @@ class PlayState extends FlxState
 		
 		
 		
-		terminalAdd(cmd);
+		terminalAdd(cmd, true);
 		
 		switch(curCommand)
 		{
 			case "help":
-				terminalAdd("driveinfo - gives you information for each installed drive");
-				terminalAdd("push <input> <output> - moves every file from the input drive to the output drive");
+				terminalAdd("tutorial				- sends some game info");
+				terminalAdd("credits				- shoutouts and also the goobers who made this game");
+				terminalAdd("driveinfo				- gives you information for each installed drive");
+				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
+				terminalAdd("push <input> <output>	- moves every file from the input drive to the output drive");
+				
+			
+			case "tutorial":
+				terminalAdd("The game is controlled via the ingame command line only, use it to move around the data to keep it safe from the virus! Ejecting drives gets you points, but if there's virus bits in there you'll get a massive point deduction!");
+			
+			case "credits":
+				creds();
+			case "creds":
+				creds();
 			case "driveinfo":
 				for (i in 0...grpDrives.members.length)
 				{
 					var driveKind:String = grpDrives.members[i].driveType;
 					driveKind.toUpperCase();
-					terminalAdd("Drive " + i + ": " + driveKind);
-					terminalAdd("Max Capacity: " + grpDrives.members[i].maxCap + "GB\n");
+					terminalAdd("Drive " + i + ": " + driveKind + " Usage: " + FlxMath.roundDecimal(grpDrives.members[i].curSize, 2) + "GB free of " + FlxMath.roundDecimal(grpDrives.members[i].maxCap, 2) + "GB");
 				}
+				
 			case "push":
 				var input:Int = Std.parseInt(commands[1]);
 				var output:Int = Std.parseInt(commands[2]);
-				terminalAdd(commands[3]);
 				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
 				// whereas if I use input/outputDrive variables, I cant check for null
 				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
@@ -198,16 +209,30 @@ class PlayState extends FlxState
 		}			
 	}
 	
-	private function terminalAdd(termString:Dynamic):Void
+	private function terminalAdd(termString:Dynamic, commandOverride:Bool = false):Void
 	{
-		termString = Std.string(termString);
+		if (commandOverride)
+			termString = Std.string(termString);
+		else
+			termString = "\t" + Std.string(termString);
 		
-		var newText:FlxText = new FlxText(_commandLine.x, 0, 0, termString, 16);
+		
+		var newText:FlxText = new FlxText(_commandLine.x, 0, FlxG.width - 20, termString, 16);
 		newText.font = "assets/data/CONSOLA.TTF";
 		newText.y = _commandLine.y - 20 * newText.textField.numLines;
 		_grpPrevCommands.forEachAlive(function(t:FlxText){t.y -= 20 * newText.textField.numLines; });
 		
 		_grpPrevCommands.add(newText);
+	}
+	
+	private function creds():Void
+	{
+		terminalAdd("Made by ninjamuffin99 and FuShark in 72 hours for Ludum Dare 42, 'Running Out Of Space'");
+		terminalAdd("Design by ninjamuffin99 and FuShark");
+		terminalAdd("Art: FuShark		Programming: ninjamuffin99");
+		terminalAdd("Made with the HaxeFlixel framework: haxeflixel.com");
+		terminalAdd("Game source code on github: github.com/ninjamuffin99/ld42");
+		terminalAdd("Shoutouts to Newgrounds.com and i lov u tomfulp");
 	}
 	
 	private function downloadFiles():Void
