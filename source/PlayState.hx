@@ -458,7 +458,7 @@ class PlayState extends FlxState
 		
 		var newText:FlxText = new FlxText(_commandLine.x, 0, FlxG.width - 20, termString, 16);
 		newText.font = "assets/data/CONSOLA.TTF";
-		newText.y = _commandLine.y - 20 * newText.textField.numLines;
+		newText.y = _commandLine.y - 30 * newText.textField.numLines;
 		_grpPrevCommands.forEachAlive(function(t:FlxText){t.y -= 20 * newText.textField.numLines; });
 		
 		_grpPrevCommands.add(newText);

@@ -90,51 +90,35 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
-		urls.push ("assets/sounds/keysOff_0.wav");
-		types.push (lime.Assets.AssetType.SOUND);
-		
-		
-		urls.push ("assets/sounds/keysOff_1.wav");
-		types.push (lime.Assets.AssetType.SOUND);
-		
-		
-		urls.push ("assets/sounds/keysOff_2.wav");
-		types.push (lime.Assets.AssetType.SOUND);
-		
-		
-		urls.push ("assets/sounds/keysOff_3.wav");
-		types.push (lime.Assets.AssetType.SOUND);
-		
-		
-		urls.push ("assets/sounds/keysOff_4.wav");
-		types.push (lime.Assets.AssetType.SOUND);
-		
-		
-		urls.push ("assets/sounds/keysOff_5.wav");
-		types.push (lime.Assets.AssetType.SOUND);
-		
-		
-		urls.push ("assets/sounds/keys_0.mp3");
+		urls.push ("assets/sounds/keyClickOn1.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
-		urls.push ("assets/sounds/keys_1.mp3");
+		urls.push ("assets/sounds/keyClickOn2.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
-		urls.push ("assets/sounds/keys_2.mp3");
+		urls.push ("assets/sounds/keyClickOn3.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
-		urls.push ("assets/sounds/keys_3.mp3");
+		urls.push ("assets/sounds/keyClickOn4.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
-		urls.push ("assets/sounds/keys_4.mp3");
+		urls.push ("assets/sounds/keyClickRelease1.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
-		urls.push ("assets/sounds/keys_5.mp3");
+		urls.push ("assets/sounds/keyClickRelease2.mp3");
+		types.push (lime.Assets.AssetType.MUSIC);
+		
+		
+		urls.push ("assets/sounds/keyClickRelease3.mp3");
+		types.push (lime.Assets.AssetType.MUSIC);
+		
+		
+		urls.push ("assets/sounds/keyClickRelease4.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
@@ -347,7 +331,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "226",
+			build: "228",
 			company: "HaxeFlixel",
 			file: "ld42",
 			fps: 60,
