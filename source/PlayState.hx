@@ -68,6 +68,10 @@ class PlayState extends FlxState
 		
 		downloadTimer = timerNeeded;
 		
+		FlxG.sound.volumeUpKeys = null;
+		FlxG.sound.volumeDownKeys = null;
+		FlxG.sound.muteKeys = null;
+		
 		super.create();
 	}
 
@@ -113,7 +117,9 @@ class PlayState extends FlxState
 				terminalAdd("credits				- shoutouts and also the goobers who made this game");
 				terminalAdd("driveinfo				- gives you information for each installed drive");
 				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
+				terminalAdd("mute					- toggles mute");
 				terminalAdd("push <input> <output>	- moves every file from the input drive to the output drive");
+				terminalAdd("volume <volume>		- changes the volume between any value between 0 and 100");
 				
 			
 			case "tutorial":
@@ -123,14 +129,46 @@ class PlayState extends FlxState
 				creds();
 			case "creds":
 				creds();
+			case "thanks":
+				terminalAdd("Special thanks, in no particular order");
+				terminalAdd("Tom Fulp and Newgrounds.com and literally everyone on Newgrounds");
+				terminalAdd("PhantomArcade");
+				terminalAdd("Digimin");
+				terminalAdd("BrandyBuizel");
+				terminalAdd("muctucc");
+				terminalAdd("Dustin Nelson, for letting me borrow his laptop over the weekend");
+				terminalAdd("Tim Hortons, for letting me mooch off their internet for a few hours");
+				terminalAdd("Kanye West");
+				terminalAdd("IvanAlmighty");
+				terminalAdd("DigitalFudge");
+				terminalAdd("aninvisiblepirate");
+				terminalAdd("The HaxeFlixel Community");
+				terminalAdd("the guy who made the game Hacknet (if you like this stinky game check that one out!!)");
+				terminalAdd("Ludum Dare (and everyone who participates)");
+				
 			case "driveinfo":
 				for (i in 0...grpDrives.members.length)
 				{
 					var driveKind:String = grpDrives.members[i].driveType;
 					driveKind.toUpperCase();
-					terminalAdd("Drive " + i + ": " + driveKind + " Usage: " + FlxMath.roundDecimal(grpDrives.members[i].curSize, 2) + "GB free of " + FlxMath.roundDecimal(grpDrives.members[i].maxCap, 2) + "GB");
+					terminalAdd("Drive " + i + ": " + driveKind + " Usage: " + FlxMath.roundDecimal(grpDrives.members[i].curSize, 2) + "GB used of " + FlxMath.roundDecimal(grpDrives.members[i].maxCap, 2) + "GB");
 				}
 				
+			case "mute":
+				FlxG.sound.toggleMuted();
+				terminalAdd("muted: " + FlxG.sound.muted);
+				
+			case "volume":
+				var volume:Float = Std.parseFloat(commands[1]);
+				if (FlxMath.inBounds(volume, 0, 100))
+				{
+					// Volume is allowed to be set between 0 and 100 to allow for easier, and finer usage by players
+					// and then its converted to the acceptable decimal place for Flixel use
+					FlxG.sound.volume = volume * 0.01; 
+					terminalAdd("volume set to " + volume);
+				}
+				else
+					terminalAdd("Error setting volume, requires a value between 0 and 100");
 			case "push":
 				var input:Int = Std.parseInt(commands[1]);
 				var output:Int = Std.parseInt(commands[2]);
@@ -167,6 +205,8 @@ class PlayState extends FlxState
 					}
 					
 					terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
+					if (commands[3] != null)
+						terminalAdd("moved only " + commands[3] + " files to drive " + output);
 				}
 				else
 				{
@@ -233,6 +273,7 @@ class PlayState extends FlxState
 		terminalAdd("Made with the HaxeFlixel framework: haxeflixel.com");
 		terminalAdd("Game source code on github: github.com/ninjamuffin99/ld42");
 		terminalAdd("Shoutouts to Newgrounds.com and i lov u tomfulp");
+		terminalAdd("use the 'thanks' command to see a list of sweet and cool people");
 	}
 	
 	private function downloadFiles():Void
