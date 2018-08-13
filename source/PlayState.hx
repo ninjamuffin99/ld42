@@ -148,6 +148,8 @@ class PlayState extends FlxState
 			}
 		}
 		
+		_commandLine.hasFocus = true;
+		
 		var osCounter:Int = 0;
 		for (d in grpDrives.members)
 		{
