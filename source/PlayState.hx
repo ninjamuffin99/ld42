@@ -1,9 +1,8 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.addons.text.FlxTextField;
+import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
@@ -119,12 +118,12 @@ class PlayState extends FlxState
 				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
 				terminalAdd("mute					- toggles mute");
 				terminalAdd("push <input> <output>	- moves every file from the input drive to the output drive");
+				terminalAdd("screenshot				- take a screenshot and saves it");
 				terminalAdd("volume <volume>		- changes the volume between any value between 0 and 100");
 				
 			
 			case "tutorial":
 				terminalAdd("The game is controlled via the ingame command line only, use it to move around the data to keep it safe from the virus! Ejecting drives gets you points, but if there's virus bits in there you'll get a massive point deduction!");
-			
 			case "credits":
 				creds();
 			case "creds":
@@ -133,12 +132,14 @@ class PlayState extends FlxState
 				terminalAdd("Special thanks, in no particular order");
 				terminalAdd("Tom Fulp and Newgrounds.com and literally everyone on Newgrounds");
 				terminalAdd("PhantomArcade");
+				
 				terminalAdd("Digimin");
 				terminalAdd("BrandyBuizel");
 				terminalAdd("muctucc");
 				terminalAdd("Dustin Nelson, for letting me borrow his laptop over the weekend");
 				terminalAdd("Tim Hortons, for letting me mooch off their internet for a few hours");
 				terminalAdd("Kanye West");
+				
 				terminalAdd("IvanAlmighty");
 				terminalAdd("DigitalFudge");
 				terminalAdd("aninvisiblepirate");
@@ -244,6 +245,9 @@ class PlayState extends FlxState
 					var drvJunk = grpDrives.length - 1;
 					terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in input");
 				}
+			case "screenshot":
+				FlxScreenGrab.grab(null, true, true);
+				terminalAdd("screenshot taken");
 			default:
 				terminalAdd(curCommand + " is not a recognized command... try 'help'");
 		}			
