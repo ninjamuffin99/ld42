@@ -62,6 +62,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -113,8 +119,20 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/data/data-goes-here.txt", AssetType.TEXT);
 		className.set ("assets/images/bomb.png", __ASSET__assets_images_bomb_png);
 		type.set ("assets/images/bomb.png", AssetType.IMAGE);
+		className.set ("assets/images/borders.png", __ASSET__assets_images_borders_png);
+		type.set ("assets/images/borders.png", AssetType.IMAGE);
+		className.set ("assets/images/deadDrives.png", __ASSET__assets_images_deaddrives_png);
+		type.set ("assets/images/deadDrives.png", AssetType.IMAGE);
+		className.set ("assets/images/driveNumbers.png", __ASSET__assets_images_drivenumbers_png);
+		type.set ("assets/images/driveNumbers.png", AssetType.IMAGE);
+		className.set ("assets/images/fullDrive.png", __ASSET__assets_images_fulldrive_png);
+		type.set ("assets/images/fullDrive.png", AssetType.IMAGE);
+		className.set ("assets/images/fullVirusReference.png", __ASSET__assets_images_fullvirusreference_png);
+		type.set ("assets/images/fullVirusReference.png", AssetType.IMAGE);
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
+		className.set ("assets/images/virus.png", __ASSET__assets_images_virus_png);
+		type.set ("assets/images/virus.png", AssetType.IMAGE);
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", AssetType.TEXT);
 		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
@@ -220,10 +238,34 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "assets/images/borders.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/deadDrives.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/driveNumbers.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/fullDrive.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/fullVirusReference.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/images-go-here.txt";
 		path.set (id, id);
 		
 		type.set (id, AssetType.TEXT);
+		id = "assets/images/virus.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "assets/music/music-goes-here.txt";
 		path.set (id, id);
 		
@@ -412,8 +454,26 @@ class DefaultAssetLibrary extends AssetLibrary {
 		className.set ("assets/images/bomb.png", __ASSET__assets_images_bomb_png);
 		type.set ("assets/images/bomb.png", AssetType.IMAGE);
 		
+		className.set ("assets/images/borders.png", __ASSET__assets_images_borders_png);
+		type.set ("assets/images/borders.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/deadDrives.png", __ASSET__assets_images_deaddrives_png);
+		type.set ("assets/images/deadDrives.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/driveNumbers.png", __ASSET__assets_images_drivenumbers_png);
+		type.set ("assets/images/driveNumbers.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/fullDrive.png", __ASSET__assets_images_fulldrive_png);
+		type.set ("assets/images/fullDrive.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/fullVirusReference.png", __ASSET__assets_images_fullvirusreference_png);
+		type.set ("assets/images/fullVirusReference.png", AssetType.IMAGE);
+		
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
+		
+		className.set ("assets/images/virus.png", __ASSET__assets_images_virus_png);
+		type.set ("assets/images/virus.png", AssetType.IMAGE);
 		
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", AssetType.TEXT);
@@ -1179,7 +1239,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_data_consolaz_ttf extends flash.text.Font { }
 @:keep @:bind #if display private #end class __ASSET__assets_data_data_goes_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_images_bomb_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_borders_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_deaddrives_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_drivenumbers_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_fulldrive_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_fullvirusreference_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__assets_images_virus_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_sounds_go_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_mp3 extends flash.media.Sound { }
@@ -1226,6 +1292,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep #if display private #end class __ASSET__assets_data_consolab_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold"; } } 
 @:keep #if display private #end class __ASSET__assets_data_consolai_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Italic"; } } 
 @:keep #if display private #end class __ASSET__assets_data_consolaz_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold Italic"; } } 
+
+
+
+
+
+
 
 
 
@@ -1282,7 +1354,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:font("assets/data/CONSOLAZ.TTF") #if display private #end class __ASSET__assets_data_consolaz_ttf extends lime.text.Font {}
 @:file("assets/data/data-goes-here.txt") #if display private #end class __ASSET__assets_data_data_goes_here_txt extends lime.utils.Bytes {}
 @:image("assets/images/bomb.png") #if display private #end class __ASSET__assets_images_bomb_png extends lime.graphics.Image {}
+@:image("assets/images/borders.png") #if display private #end class __ASSET__assets_images_borders_png extends lime.graphics.Image {}
+@:image("assets/images/deadDrives.png") #if display private #end class __ASSET__assets_images_deaddrives_png extends lime.graphics.Image {}
+@:image("assets/images/driveNumbers.png") #if display private #end class __ASSET__assets_images_drivenumbers_png extends lime.graphics.Image {}
+@:image("assets/images/fullDrive.png") #if display private #end class __ASSET__assets_images_fulldrive_png extends lime.graphics.Image {}
+@:image("assets/images/fullVirusReference.png") #if display private #end class __ASSET__assets_images_fullvirusreference_png extends lime.graphics.Image {}
 @:file("assets/images/images-go-here.txt") #if display private #end class __ASSET__assets_images_images_go_here_txt extends lime.utils.Bytes {}
+@:image("assets/images/virus.png") #if display private #end class __ASSET__assets_images_virus_png extends lime.graphics.Image {}
 @:file("assets/music/music-goes-here.txt") #if display private #end class __ASSET__assets_music_music_goes_here_txt extends lime.utils.Bytes {}
 @:file("assets/sounds/sounds-go-here.txt") #if display private #end class __ASSET__assets_sounds_sounds_go_here_txt extends lime.utils.Bytes {}
 @:file("C:/HaxeToolkit/haxe/lib/flixel/4,5,0/assets/sounds/beep.mp3") #if display private #end class __ASSET__flixel_sounds_beep_mp3 extends lime.utils.Bytes {}

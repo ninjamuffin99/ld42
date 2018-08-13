@@ -67,7 +67,6 @@ class PlayState extends FlxState
 			var newDrive:DriveSprite = new DriveSprite(FlxG.width / 3 * driveCount, 0, FlxG.random.getObject(driveTypes, [0.9, 0.4, 0.4]));
 			grpDrives.add(newDrive);
 			
-			driveCount += 1;
 			
 			newDrive.addFile("os");
 			
@@ -77,6 +76,15 @@ class PlayState extends FlxState
 				newDrive.addFile(FlxG.random.getObject(DriveSprite.fileTypes, [1, 1, 0, 1]));
 				randoFiles -= 1;
 			}
+			
+			
+			var driveNumber:FlxSprite = new FlxSprite(newDrive.getMidpoint().x - 28, 150).loadGraphic(AssetPaths.driveNumbers__png, true, 56, 45);
+			driveNumber.animation.frameIndex = driveCount;
+			add(driveNumber);
+			
+			driveCount += 1;
+			
+			
 		}
 		
 		virusDrive = FlxG.random.int(0, grpDrives.length - 1);
