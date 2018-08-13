@@ -58,8 +58,6 @@ class DriveSprite extends FlxSpriteGroup
 			case USB:
 				maxCap = 32;
 		}
-		
-		addFile(FlxG.random.getObject(fileTypes));
 	}
 	
 	override public function update(elapsed:Float):Void 
@@ -110,7 +108,7 @@ class DriveSprite extends FlxSpriteGroup
 		super.update(elapsed);
 	}
 	
-	public function addFile(fileType:String = "", sizeGB:Float = 0):Void
+	public function addFile(fileType:String = "", sizeGB:Float = 0, infected:Bool = false):Void
 	{
 		var fileColor:Int = 0;
 		if (sizeGB == 0)
@@ -139,6 +137,7 @@ class DriveSprite extends FlxSpriteGroup
 		newFile.makeGraphic(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(sizeGB)), fileColor);
 		newFile.size = sizeGB;
 		newFile.fileType = fileType;
+		newFile.infected = infected;
 		grpFiles.add(newFile);
 	}
 	

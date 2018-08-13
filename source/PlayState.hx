@@ -6,6 +6,7 @@ import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
+import flixel.system.debug.console.ConsoleCommands;
 import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 using StringTools;
@@ -30,11 +31,13 @@ class PlayState extends FlxState
 	private var downloadTimer:Float = 0;
 	private var timerNeeded:Float = 20;
 	
+	private var cooldown:Float = 0;
+	
 	private var points:Float = 0;
 	
 	override public function create():Void
 	{
-		_commandLine = new FlxInputText(20, FlxG.height - 20, FlxG.width - 40, "", 16);
+		_commandLine = new FlxInputText(20, FlxG.height - 40, FlxG.width - 40, "", 16);
 		_commandLine.font = "assets/data/CONSOLA.TTF";
 		add(_commandLine);
 		
@@ -50,20 +53,24 @@ class PlayState extends FlxState
 		var driveCount:Int = 0;
 		
 		var driveTypes = ["ssd", "hdd", "usb"];
+		
 		while (driveCount < 3)
 		{
-			var newDrive:DriveSprite = new DriveSprite(FlxG.width / 3 * driveCount, 0, FlxG.random.getObject(driveTypes));
+			var newDrive:DriveSprite = new DriveSprite(FlxG.width / 3 * driveCount, 0, FlxG.random.getObject(driveTypes, [0.9, 0.4, 0.4]));
 			grpDrives.add(newDrive);
 			
 			driveCount += 1;
 			
+			newDrive.addFile("os");
+			
 			var randoFiles:Int = FlxG.random.int(1, 6);
 			while (randoFiles > 0)
 			{
-				newDrive.addFile(FlxG.random.getObject(DriveSprite.fileTypes));
+				newDrive.addFile(FlxG.random.getObject(DriveSprite.fileTypes, [1, 1, 0, 1]));
 				randoFiles -= 1;
 			}
 		}
+		
 		
 		downloadTimer = timerNeeded;
 		
@@ -87,14 +94,45 @@ class PlayState extends FlxState
 			downloadFiles();
 			timerNeeded *= 0.9;
 			downloadTimer = timerNeeded;
+			
+		}
+		
+		if (cooldown > 0)
+		{
+			cooldown -= elapsed;
+			if (cooldown < 0)
+				terminalAdd("Done");
 		}
 		
 		if (_commandLine.hasFocus && FlxG.keys.justPressed.ENTER)
 		{
+			
 			commandParser(_commandLine.text);
 			
 			_commandLine.text = "";
 			_commandLine.caretIndex = 0;
+		}
+		
+		var osCounter:Int = 0;
+		for (d in grpDrives.members)
+		{
+			for (f in d.grpFiles)
+			{
+				if (f.fileType == "os")
+				{
+					osCounter += 1;
+				}
+			}
+		}
+		
+		switch(osCounter)
+		{
+			case 0:
+				FlxG.switchState(new GameoverState());
+			case 1:
+				// visuals get messed up
+			case 2:
+				// audio gets messed up
 		}
 	}
 	
@@ -109,11 +147,18 @@ class PlayState extends FlxState
 		
 		terminalAdd(cmd, true);
 		
+		if (cooldown > 0)
+		{
+			terminalAdd("error, intensive compute process in progress, please wait");
+			return;
+		}
+		
 		switch(curCommand)
 		{
 			case "help":
 				terminalAdd("tutorial				- sends some game info");
-				terminalAdd("credits				- shoutouts and also the goobers who made this game");
+				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
+				terminalAdd("credits					- shoutouts and also the goobers who made this game"); // dont knwo why but this needs an extra tab
 				terminalAdd("driveinfo				- gives you information for each installed drive");
 				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
 				terminalAdd("mute					- toggles mute");
@@ -124,6 +169,7 @@ class PlayState extends FlxState
 			
 			case "tutorial":
 				terminalAdd("The game is controlled via the ingame command line only, use it to move around the data to keep it safe from the virus! Ejecting drives gets you points, but if there's virus bits in there you'll get a massive point deduction!");
+				terminalAdd("and make sure you don't lose your OS files!");
 			case "credits":
 				creds();
 			case "creds":
@@ -132,20 +178,35 @@ class PlayState extends FlxState
 				terminalAdd("Special thanks, in no particular order");
 				terminalAdd("Tom Fulp and Newgrounds.com and literally everyone on Newgrounds");
 				terminalAdd("PhantomArcade");
-				
 				terminalAdd("Digimin");
 				terminalAdd("BrandyBuizel");
 				terminalAdd("muctucc");
 				terminalAdd("Dustin Nelson, for letting me borrow his laptop over the weekend");
 				terminalAdd("Tim Hortons, for letting me mooch off their internet for a few hours");
-				terminalAdd("Kanye West");
-				
-				terminalAdd("IvanAlmighty");
-				terminalAdd("DigitalFudge");
-				terminalAdd("aninvisiblepirate");
 				terminalAdd("The HaxeFlixel Community");
 				terminalAdd("the guy who made the game Hacknet (if you like this stinky game check that one out!!)");
 				terminalAdd("Ludum Dare (and everyone who participates)");
+				
+			case "wipe":
+				var input:Int = Std.parseInt(commands[1]);
+				if (Std.parseInt(commands[1]) == null || !FlxMath.inBounds(input, 0, 2))
+				{
+					driveError();
+					return;
+				}
+				
+				var itemsMoved:Int = 0;
+				while (grpDrives.members[input].grpFiles.length > 0)
+				{
+					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+					{
+						grpDrives.members[input].grpFiles.remove(s, true);
+						
+						itemsMoved += 1;
+						
+					});
+				}
+				terminalAdd("drive " + input + " has been wiped, " + itemsMoved + " files deleted");
 				
 			case "driveinfo":
 				for (i in 0...grpDrives.members.length)
@@ -158,7 +219,8 @@ class PlayState extends FlxState
 			case "mute":
 				FlxG.sound.toggleMuted();
 				terminalAdd("muted: " + FlxG.sound.muted);
-				
+			case "freeze":
+				cooldown = 5;
 			case "volume":
 				var volume:Float = Std.parseFloat(commands[1]);
 				if (FlxMath.inBounds(volume, 0, 100))
@@ -219,7 +281,7 @@ class PlayState extends FlxState
 				if (Std.parseInt(commands[1]) != null && FlxMath.inBounds(input, 0, 2))
 				{
 					points += grpDrives.members[input].curSize;
-					terminalAdd("Ejected drive " + input + " - " + grpDrives.members[input].curSize + "GB of data");
+					terminalAdd("Ejjecting drive " + input + " - " + grpDrives.members[input].curSize + "GB of data, please wait");
 					
 					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
 					while (moveableItems > 0)
@@ -234,7 +296,8 @@ class PlayState extends FlxState
 					
 					grpDrives.members[input].driveType = FlxG.random.getObject(DriveSprite.driveTypes);
 					
-					new FlxTimer().start(FlxG.random.float(1, 4), 
+					cooldown = FlxG.random.float(1, grpDrives.members[input].curSize * 0.0007);
+					new FlxTimer().start(cooldown, 
 										function(t:FlxTimer)
 										{
 											terminalAdd("Inserted an empty " + grpDrives.members[input].driveType + " in slot " + input + " with " + grpDrives.members[input].maxCap + "GB of free space");
@@ -242,8 +305,7 @@ class PlayState extends FlxState
 				}
 				else
 				{
-					var drvJunk = grpDrives.length - 1;
-					terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in input");
+					driveError();
 				}
 			case "screenshot":
 				FlxScreenGrab.grab(null, true, true);
@@ -280,6 +342,12 @@ class PlayState extends FlxState
 		terminalAdd("use the 'thanks' command to see a list of sweet and cool people");
 	}
 	
+	private function driveError():Void
+	{
+		var drvJunk = grpDrives.length - 1;
+		terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in parameters");
+	}
+	
 	private function downloadFiles():Void
 	{
 		for (i in grpDrives.members)
@@ -287,7 +355,7 @@ class PlayState extends FlxState
 			var filesAmount = FlxG.random.int(0, 6);
 			while (filesAmount > 0)
 			{
-				i.addFile(FlxG.random.getObject(DriveSprite.fileTypes));
+				i.addFile(FlxG.random.getObject(DriveSprite.fileTypes, [1, 1, 0, 1]));
 				filesAmount -= 1;
 			}
 		}
