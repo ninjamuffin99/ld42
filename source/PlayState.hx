@@ -107,7 +107,7 @@ class PlayState extends FlxState
 		var bordersOverlay:FlxSprite = new FlxSprite(0, 0).loadGraphic(AssetPaths.borders__png);
 		add(bordersOverlay);
 		
-		FlxG.sound.playMusic("assets/music/760401_Eyescaffe---8-bit.mp3", 0.3);
+		FlxG.sound.playMusic("assets/music/760401_Eyescaffe---8-bit.mp3", 0.05);
 		
 		super.create();
 	}
@@ -239,17 +239,27 @@ class PlayState extends FlxState
 		switch(curCommand)
 		{
 			case "help":
+			if (Std.parseInt(commands[1]) <= 1 || Std.parseInt(commands[1]) == null)
+			{
+				
 				terminalAdd("tutorial				- sends some game info");
 				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
-				terminalAdd("credits					- shoutouts and also the goobers who made this game"); // dont knwo why but this needs an extra tab
+				terminalAdd("credits 					- shoutouts and also the goobers who made this game"); // dont knwo why but this needs an extra tab
 				terminalAdd("clear					- clears the terminal window");
 				terminalAdd("driveinfo				- gives you information for each installed drive");
 				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
+				terminalAdd("page 1 of 2, use command 'help 2' to see next page");
+			}
+			if (Std.parseInt(commands[1]) >= 2)
+			{
+				
 				terminalAdd("mute					- toggles mute");
 				terminalAdd("push <input> <output>	- moves every file from the input drive to the output drive");
 				terminalAdd("score					- checks your current score");
 				terminalAdd("screenshot				- take a screenshot and saves it");
 				terminalAdd("volume <volume>		- changes the volume between any value between 0 and 100");
+				terminalAdd("page 2 of 2");
+			}
 				
 			
 			case "tutorial":
@@ -260,17 +270,29 @@ class PlayState extends FlxState
 			case "creds":
 				creds();
 			case "thanks":
-				terminalAdd("Special thanks, in no particular order");
-				terminalAdd("Tom Fulp and Newgrounds.com and literally everyone on Newgrounds");
-				terminalAdd("PhantomArcade");
-				terminalAdd("Digimin");
-				terminalAdd("BrandyBuizel");
-				terminalAdd("muctucc");
-				terminalAdd("Dustin Nelson, for letting me borrow his laptop over the weekend");
-				terminalAdd("Tim Hortons, for letting me mooch off their internet for a few hours");
-				terminalAdd("The HaxeFlixel Community");
-				terminalAdd("the guy who made the game Hacknet (if you like this stinky game check that one out!!)");
-				terminalAdd("Ludum Dare (and everyone who participates)");
+				if (Std.parseInt(commands[1]) <= 1 || Std.parseInt(commands[1]) == null)
+				{
+					terminalAdd("Special thanks, in no particular order");
+					terminalAdd("Tom Fulp and Newgrounds.com and literally everyone on Newgrounds");
+					terminalAdd("PhantomArcade");
+					terminalAdd("Digimin");
+					terminalAdd("BrandyBuizel");
+					terminalAdd("muctucc");
+					terminalAdd("page 1 of 2");
+				
+				}
+				
+				if (Std.parseInt(commands[1]) >= 2)
+				{
+					terminalAdd("Dustin Nelson, for letting me borrow his laptop over the weekend");
+					terminalAdd("Tim Hortons, for letting me mooch off their internet for a few hours");
+					terminalAdd("The HaxeFlixel Community");
+					terminalAdd("the guy who made the game Hacknet (if you like this stinky game check that one out!!)");
+					terminalAdd("Ludum Dare (and everyone who participates)");
+					terminalAdd("page 2 of 2");
+				}
+				
+				
 				
 			case "wipe":
 				var input:Int = Std.parseInt(commands[1]);
@@ -459,7 +481,14 @@ class PlayState extends FlxState
 		var newText:FlxText = new FlxText(_commandLine.x, 0, FlxG.width - 20, termString, 16);
 		newText.font = "assets/data/CONSOLA.TTF";
 		newText.y = _commandLine.y - 30 * newText.textField.numLines;
-		_grpPrevCommands.forEachAlive(function(t:FlxText){t.y -= 20 * newText.textField.numLines; });
+		_grpPrevCommands.forEachAlive(function(t:FlxText)
+		{
+			t.y -= 20 * newText.textField.numLines; 
+			if (t.y <= 404)
+			{
+				t.kill();
+			}
+		});
 		
 		_grpPrevCommands.add(newText);
 	}
