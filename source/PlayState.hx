@@ -263,7 +263,7 @@ class PlayState extends FlxState
 				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
 				terminalAdd("push <in> <out>	- moves every file from the input drive to the output drive");
 				terminalAdd("clear					- clears the terminal window");
-				terminalAdd("clean					- cleans the viruses out (Doesn't recover the files however, just stops them from spreading");
+				terminalAdd("clean <input>			- cleans the viruses out (Doesn't recover the files however, just stops them from spreading");
 				terminalAdd("driveinfo				- gives you information for each installed drive");
 				terminalAdd("upload <input>			- ejects the input drive and uploads the content to the cloud, and re-inserts a new drive");
 				terminalAdd("page 1 of 2, use command 'help 2' to see next page");
@@ -309,6 +309,34 @@ class PlayState extends FlxState
 					terminalAdd("page 2 of 2");
 				}
 				
+			case "clean":
+				var input:Int = Std.parseInt(commands[1]);
+				if (Std.parseInt(commands[1]) == null || !FlxMath.inBounds(input, 0, 2))
+				{
+					driveError();
+					return;
+				}
+				
+				terminalAdd("cleaning drive of viruses...please wait...");
+				new FlxTimer().start(FlxG.random.float(0.4, 1.5) * grpDrives.members[input].numViruses, function(t:FlxTimer)
+				{
+					var itemsMoved:Int = 0;
+					while (grpDrives.members[input].numViruses > 0)
+					{
+						grpDrives.members[input].updateSize();
+						
+						grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+						{
+							if (s.infected)
+							{
+								grpDrives.members[input].grpFiles.remove(s, true);
+								
+								itemsMoved += 1;
+							}
+						});
+					}
+					terminalAdd("drive " + input + " has been cleaned of viruses, " + itemsMoved + " viruses deleted");
+				});
 				
 				
 			case "wipe":

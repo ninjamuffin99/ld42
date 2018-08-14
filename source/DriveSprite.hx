@@ -44,6 +44,8 @@ class DriveSprite extends FlxSpriteGroup
 		"usb"
 	];
 	
+	public var numViruses:Int = 0;
+	
 	public var driveType:String = "";
 	
 	private var overcapWarning:FlxSprite;
@@ -132,6 +134,8 @@ class DriveSprite extends FlxSpriteGroup
 			var deadFile:VirusSprite = new VirusSprite(10, 0);
 			deadFile.infected = infected;
 			grpFiles.add(deadFile);
+			
+			numViruses += 1;
 		}
 		else
 		{
@@ -146,7 +150,7 @@ class DriveSprite extends FlxSpriteGroup
 	
 	public function updateSize():Void
 	{
-		
+		numViruses = 0;
 		var fileSizeAdd:Float = 0;
 		grpFiles.forEach(function(spr:FileSprite)
 		{
@@ -198,6 +202,7 @@ class DriveSprite extends FlxSpriteGroup
 			else
 			{
 				spr.size = virusFileSizeRatio(40);
+				numViruses += 1;
 			}
 			
 			
