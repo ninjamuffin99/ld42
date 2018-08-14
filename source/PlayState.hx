@@ -262,8 +262,8 @@ class PlayState extends FlxState
 				terminalAdd("tutorial				- sends some game info");
 				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
 				terminalAdd("push <in> <out>	- moves every file from the input drive to the output drive");
-				terminalAdd("credits 					- shoutouts and also the goobers who made this game"); // dont knwo why but this needs an extra tab
 				terminalAdd("clear					- clears the terminal window");
+				terminalAdd("clean					- cleans the viruses out (Doesn't recover the files however, just stops them from spreading");
 				terminalAdd("driveinfo				- gives you information for each installed drive");
 				terminalAdd("upload <input>			- ejects the input drive and uploads the content to the cloud, and re-inserts a new drive");
 				terminalAdd("page 1 of 2, use command 'help 2' to see next page");
@@ -276,6 +276,7 @@ class PlayState extends FlxState
 				terminalAdd("score					- checks your current score");
 				terminalAdd("screenshot				- take a screenshot and saves it");
 				terminalAdd("volume <volume>		- changes the volume between any value between 0 and 100");
+				terminalAdd("credits 					- shoutouts and also the goobers who made this game"); // dont knwo why but this needs an extra tab
 				terminalAdd("page 2 of 2");
 			}
 			
@@ -439,6 +440,7 @@ class PlayState extends FlxState
 		terminalAdd("Made by ninjamuffin99 and FuShark in 72 hours for Ludum Dare 42, 'Running Out Of Space'");
 		terminalAdd("Design by ninjamuffin99 and FuShark");
 		terminalAdd("Art: FuShark		Programming: ninjamuffin99");
+		terminalAdd("Additional help: BrandyBuizel");
 		terminalAdd("Made with the HaxeFlixel framework: haxeflixel.com");
 		terminalAdd("Game source code on github: github.com/ninjamuffin99/ld42");
 		terminalAdd("Shoutouts to Newgrounds.com and i lov u tomfulp");

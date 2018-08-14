@@ -151,39 +151,43 @@ class DriveSprite extends FlxSpriteGroup
 		grpFiles.forEach(function(spr:FileSprite)
 		{
 			var arrayPos = grpFiles.members.indexOf(spr);
-			var prevSpr:FileSprite = new FileSprite();
-			var nextSpr:FileSprite = new FileSprite();
-			
-			if (arrayPos > 0)
+			if (grpFiles.members.length > 1)
 			{
-				prevSpr = grpFiles.members[arrayPos - 1];
-				spr.y = prevSpr.y + prevSpr.height + 2;
-			}
-			else
-			{
-				spr.y = 5;
-				nextSpr = grpFiles.members[arrayPos + 1];
-			}
-			
-			if (arrayPos < grpFiles.members.length - 1)
-			{
-				nextSpr = grpFiles.members[arrayPos + 1];
-			}
-			else
-			{
-				prevSpr = grpFiles.members[arrayPos - 1];
-			}
-			
-			if (prevSpr.infected || nextSpr.infected)
-			{
-				if (FlxG.random.bool(0.1) && !spr.infected)
+				var prevSpr:FileSprite = new FileSprite();
+				var nextSpr:FileSprite = new FileSprite();
+				
+				if (arrayPos > 0)
 				{
-					var newVirus:VirusSprite = new VirusSprite(10);
-					grpFiles.add(newVirus);
-					grpFiles.remove(spr, true);
-					
-					newVirus.size = virusFileSizeRatio(40);
+					prevSpr = grpFiles.members[arrayPos - 1];
+					spr.y = prevSpr.y + prevSpr.height + 2;
 				}
+				else
+				{
+					spr.y = 5;
+					nextSpr = grpFiles.members[arrayPos + 1];
+				}
+				
+				if (arrayPos < grpFiles.members.length - 1)
+				{
+					nextSpr = grpFiles.members[arrayPos + 1];
+				}
+				else
+				{
+					prevSpr = grpFiles.members[arrayPos - 1];
+				}
+				
+				if (prevSpr.infected || nextSpr.infected)
+				{
+					if (FlxG.random.bool(0.1) && !spr.infected)
+					{
+						var newVirus:VirusSprite = new VirusSprite(10);
+						grpFiles.add(newVirus);
+						grpFiles.remove(spr, true);
+						
+						newVirus.size = virusFileSizeRatio(40);
+					}
+				}
+				
 			}
 			
 			if (!spr.infected)
@@ -211,7 +215,9 @@ class DriveSprite extends FlxSpriteGroup
 		curSize = FlxMath.roundDecimal(fileSizeAdd, 2);
 		
 		if (curSize >= maxCap)
-			overmaxCap = true
+		{
+			overmaxCap = true;
+		}
 		else
 			overmaxCap = false;
 	}
