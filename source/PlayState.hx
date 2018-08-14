@@ -347,134 +347,9 @@ class PlayState extends FlxState
 				terminalAdd("muted: " + FlxG.sound.muted);
 				
 			case "move":
-				var input:Int = Std.parseInt(commands[2]);
-				var output:Int = Std.parseInt(commands[3]);
-				
-				var possibleFile:Bool = false;
-				for (i in DriveSprite.fileTypes)
-				{
-					if (i == Std.string(commands[1]))
-						possibleFile = true;
-				}
-				
-				if (commands[1] == null || !possibleFile)
-				{
-					terminalAdd("error, please specify a proper filetype (os, mp4, mp3, doc)");
-					return;
-				}
-				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
-				// whereas if I use input/outputDrive variables, I cant check for null
-				if (Std.parseInt(commands[2]) != null && Std.parseInt(commands[3]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
-				{		
-					var moveSpeed:Float = 0;
-					
-					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
-					
-					var itemsMoved:Int = 0;
-					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
-					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
-					
-					moveSpeed *= 0.2;
-					
-					terminalAdd("Please wait...moving files");
-					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
-					{
-						
-						while (moveableItems > 0)
-						{
-							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
-							{
-								
-								if (s.fileType == commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
-								{
-									
-									grpDrives.members[output].grpFiles.add(s);
-									grpDrives.members[input].grpFiles.remove(s, true);
-									itemsMoved += 1;
-									
-									moveableItems -= 1;
-								}
-								else if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
-								{
-									moveableItems = 0;
-								}
-							});
-						}
-						
-						terminalAdd("moved " + itemsMoved + " " + commands[1] + " files to drive " + output);
-						if (grpDrives.members[output].curSize >= grpDrives.members[output\].maxCap)
-							terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
-						
-					});
-					
-				}
-				else
-				{
-					driveError();
-				}
+				moveFiles("move", commands);
 			case "keep":
-				var input:Int = Std.parseInt(commands[2]);
-				var output:Int = Std.parseInt(commands[3]);
-				
-				var possibleFile:Bool = false;
-				for (i in DriveSprite.fileTypes)
-				{
-					if (i == Std.string(commands[1]))
-						possibleFile = true;
-				}
-				
-				if (commands[1] == null || !possibleFile)
-				{
-					terminalAdd("error, please specify a proper filetype (os, mp4, mp3, doc)");
-					return;
-				}
-				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
-				// whereas if I use input/outputDrive variables, I cant check for null
-				if (Std.parseInt(commands[2]) != null && Std.parseInt(commands[3]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
-				{
-					var moveSpeed:Float = 0;
-					
-					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
-					
-					var itemsMoved:Int = 0;
-					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
-					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
-					
-					moveSpeed *= 1.1;
-					
-					terminalAdd("Please wait...moving files");
-					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
-					{
-						
-						while (moveableItems > 0)
-						{
-							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
-							{
-								if (s.fileType != commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
-								{
-									grpDrives.members[output].grpFiles.add(s);
-									grpDrives.members[input].grpFiles.remove(s, true);
-									itemsMoved += 1;
-									moveableItems -= 1;
-								}
-								else if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
-								{
-									moveableItems = 0;
-								}
-							});
-						}
-						
-						terminalAdd("moved " + itemsMoved + " files from drive" + input + " to drive " + output);
-						if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
-							terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
-						
-					});
-					
-				}
-				else
-				{
-					driveError();
-				}
+				moveFiles("keep", commands);
 			case "freeze":
 				cooldown = 5;
 			case "volume":
@@ -489,53 +364,7 @@ class PlayState extends FlxState
 				else
 					terminalAdd("Error setting volume, requires a value between 0 and 100");
 			case "push":
-				var input:Int = Std.parseInt(commands[1]);
-				var output:Int = Std.parseInt(commands[2]);
-				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
-				// whereas if I use input/outputDrive variables, I cant check for null
-				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
-				{
-					var moveSpeed:Float = 0;
-					
-					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
-					
-					var itemsMoved:Int = 0;
-					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
-					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
-					
-					terminalAdd("Please wait...moving files");
-					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
-					{
-						
-						while (moveableItems > 0)
-						{
-							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
-							{
-								if (grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
-								{
-									grpDrives.members[output].grpFiles.add(s);
-									grpDrives.members[input].grpFiles.remove(s, true);
-									
-									itemsMoved += 1;
-									
-									moveableItems -= 1;
-								}
-								else
-									moveableItems = 0;
-								
-							});
-						}
-						terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
-						if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
-							terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
-					});
-					
-				}
-				else
-				{
-					var drvJunk = grpDrives.length - 1;
-					terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in parameters");
-				}
+				moveFiles("push", commands);
 			case "upload":
 				var input:Int = Std.parseInt(commands[1]);
 				if (Std.parseInt(commands[1]) != null && FlxMath.inBounds(input, 0, 2))
@@ -642,5 +471,115 @@ class PlayState extends FlxState
 			});
 			terminalAdd("terminal cleared", true);
 			
+	}
+	
+	/**
+	 * NOTE: Note directly related to the "move" command, this is a general function to move around files
+	 * 
+	 * just so its all in one place and behaves the same (somewhat) rather than having some copy paste stinky stuff
+	 * 
+	 * @param	moveType			
+	 * @param	commands		an array of the commands inputed
+	 */
+	private function moveFiles(moveType:String, commands:Array<String>):Void
+	{
+		var commandOffset:Int = 0;
+		var possibleFile:Bool = false;
+		
+		if (moveType == "keep" || moveType == "move")
+		{
+			for (i in DriveSprite.fileTypes)
+			{
+				if (i == Std.string(commands[1]))
+					possibleFile = true;
+			}
+			
+			commandOffset = 1;
+		}
+		else
+			possibleFile = true;
+		
+		if (commands[1] == null || !possibleFile)
+		{
+			terminalAdd("error, please specify a proper filetype (os, mp4, mp3, doc)");
+			return;
+		}
+		
+		var input:Int = Std.parseInt(commands[1 + commandOffset]);
+		var output:Int = Std.parseInt(commands[2 + commandOffset]);
+		
+		// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
+		// whereas if I use input/outputDrive variables, I cant check for null
+		if (Std.parseInt(commands[1 + commandOffset]) != null && Std.parseInt(commands[2 + commandOffset]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
+		{
+			var moveSpeed:Float = 0;
+			
+			moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
+			
+			var itemsMoved:Int = 0;
+			// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
+			var moveableItems:Int = grpDrives.members[input].grpFiles.length;
+			
+			if (moveType == "keep")
+				moveSpeed *= 1.1;
+			else if (moveType == "move")
+				moveSpeed *= 0.2;
+			
+			terminalAdd("Please wait...moving files");
+			new FlxTimer().start(moveSpeed, function(t:FlxTimer)
+			{
+				while (moveableItems > 0)
+				{
+					grpDrives.members[output].updateSize();
+					
+					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+					{
+						switch (moveType)
+						{
+							case "push":
+								if (grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
+								{		
+									grpDrives.members[output].grpFiles.add(s);
+									grpDrives.members[input].grpFiles.remove(s, true);
+									
+									itemsMoved += 1;
+									
+									moveableItems -= 1;
+								}
+							case "keep":
+								if (s.fileType != commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
+								{		
+									grpDrives.members[output].grpFiles.add(s);
+									grpDrives.members[input].grpFiles.remove(s, true);
+									
+									itemsMoved += 1;
+									
+									moveableItems -= 1;
+								}
+							case "move":
+								if (s.fileType == commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
+								{
+									
+									grpDrives.members[output].grpFiles.add(s);
+									grpDrives.members[input].grpFiles.remove(s, true);
+									itemsMoved += 1;
+									
+									moveableItems -= 1;
+								}
+						}
+					});
+					
+				}
+				terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
+				if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+					terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
+			});
+			
+		}
+		else
+		{
+			var drvJunk = grpDrives.length - 1;
+			terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in parameters");
+		}
 	}
 }

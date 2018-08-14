@@ -22,6 +22,8 @@ class DriveSprite extends FlxSpriteGroup
 	public var curSize:Float = 0;
 	public var maxCap:Float = 0;
 	
+	public var overmaxCap:Bool = false;
+	
 	public var grpFiles:FlxTypedSpriteGroup<FileSprite>;
 	
 	public var driveAvailable:Bool = true;
@@ -74,7 +76,7 @@ class DriveSprite extends FlxSpriteGroup
 		{
 			case HDD:
 				maxCap = 500;
-				transferSpeed = 5;
+				transferSpeed = 3;
 				ejectSpeed = 10;
 			case SSD:
 				maxCap = 128;
@@ -82,52 +84,11 @@ class DriveSprite extends FlxSpriteGroup
 				ejectSpeed = 5;
 			case USB:
 				maxCap = 32;
-				transferSpeed = 7;
+				transferSpeed = 4;
 				ejectSpeed = 0.2;
 		}
 		
-		var fileSizeAdd:Float = 0;
-		grpFiles.forEach(function(spr:FileSprite)
-		{
-			var arrayPos = grpFiles.members.indexOf(spr);
-			var prevSpr:FlxSprite;
-			if (spr.infected)
-			{
-				spr.size = maxCap * 0.2;
-			}
-			if (arrayPos > 0)
-			{
-				prevSpr = grpFiles.members[arrayPos - 1];
-				spr.y = prevSpr.y + prevSpr.height + 2;
-			}
-			else
-			{
-				spr.y = 5;
-			}
-			
-			if (!spr.infected)
-			{
-				spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(spr.size)));
-				spr.updateHitbox();
-			}
-			else
-			{
-				
-			}
-			
-			
-			if (spr.fileType == "doc")
-			{
-				if (FlxG.random.bool(2))
-				{
-					spr.size += FlxG.random.float(0.01, 0.03);
-				}
-			}
-			
-			fileSizeAdd += spr.size;
-		});
-		
-		curSize = FlxMath.roundDecimal(fileSizeAdd, 2);
+		updateSize();
 		
 		super.update(elapsed);
 	}
@@ -172,13 +133,63 @@ class DriveSprite extends FlxSpriteGroup
 			newFile.infected = infected;
 			grpFiles.add(newFile);
 		}
+	}
+	
+	public function updateSize():Void
+	{
 		
-
+		var fileSizeAdd:Float = 0;
+		grpFiles.forEach(function(spr:FileSprite)
+		{
+			var arrayPos = grpFiles.members.indexOf(spr);
+			var prevSpr:FlxSprite;
+			if (spr.infected)
+			{
+				spr.size = maxCap * 0.2;
+			}
+			if (arrayPos > 0)
+			{
+				prevSpr = grpFiles.members[arrayPos - 1];
+				spr.y = prevSpr.y + prevSpr.height + 2;
+			}
+			else
+			{
+				spr.y = 5;
+			}
+			
+			if (!spr.infected)
+			{
+				spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(spr.size)));
+				spr.updateHitbox();
+			}
+			else
+			{
+				
+			}
+			
+			
+			if (spr.fileType == "doc")
+			{
+				if (FlxG.random.bool(2))
+				{
+					spr.size += FlxG.random.float(0.01, 0.03);
+				}
+			}
+			
+			fileSizeAdd += spr.size;
+		});
+		
+		curSize = FlxMath.roundDecimal(fileSizeAdd, 2);
+		
+		if (curSize >= maxCap)
+			overmaxCap = true
+		else
+			overmaxCap = false;
 	}
 	
 	public function fileSizeRatio(size:Float):Float
 	{
-		return FlxMath.remapToRange(size, 0, maxCap, 0, 410);
+		return FlxMath.remapToRange(size, 0, maxCap, 0, 350);
 	}
 	
 }
