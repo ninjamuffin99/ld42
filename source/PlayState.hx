@@ -8,7 +8,6 @@ import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import flixel.system.debug.console.ConsoleCommands;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
@@ -457,7 +456,12 @@ class PlayState extends FlxState
 			var filesAmount = FlxG.random.int(0, 6);
 			while (filesAmount > 0)
 			{
-				i.addFile(FlxG.random.getObject(DriveSprite.fileTypes, [1, 1, 0, 1]));
+				i.updateSize();
+				if (!i.overmaxCap)
+				{
+					i.addFile(FlxG.random.getObject(DriveSprite.fileTypes, [1, 1, 0, 1]));
+				}
+				
 				filesAmount -= 1;
 			}
 		}
@@ -517,21 +521,20 @@ class PlayState extends FlxState
 			moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
 			
 			var itemsMoved:Int = 0;
-			// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
+			
 			var moveableItems:Int = grpDrives.members[input].grpFiles.length;
 			
 			if (moveType == "keep")
 				moveSpeed *= 1.1;
 			else if (moveType == "move")
-				moveSpeed *= 0.2;
+				
 			
 			terminalAdd("Please wait...moving files");
 			new FlxTimer().start(moveSpeed, function(t:FlxTimer)
 			{
+				// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
 				while (moveableItems > 0)
 				{
-					
-					
 					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 					{
 						grpDrives.members[output].updateSize();

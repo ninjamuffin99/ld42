@@ -2,8 +2,6 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.addons.display.FlxGridOverlay;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
@@ -47,6 +45,9 @@ class DriveSprite extends FlxSpriteGroup
 	];
 	
 	public var driveType:String = "";
+	
+	private var overcapWarning:FlxSprite;
+	private var overcapTransShit:FlxSprite;
 
 	public function new(X:Float=0, Y:Float=0, driveType:String = "hdd") 
 	{
@@ -66,10 +67,20 @@ class DriveSprite extends FlxSpriteGroup
 			case USB:
 				maxCap = 32;
 		}
+		
+		overcapTransShit = new FlxSprite().makeGraphic(Std.int(FlxG.width / 3), 410, FlxColor.BLACK);
+		overcapTransShit.alpha = 0.7;
+		add(overcapTransShit);
+		
+		overcapWarning = new FlxSprite(FlxG.width * 0.3 * 0.3, 5).loadGraphic(AssetPaths.fullDrive__png);
+		add(overcapWarning);
 	}
 	
 	override public function update(elapsed:Float):Void 
 	{
+		overcapWarning.visible = overmaxCap;
+		overcapTransShit.visible = overcapWarning.visible;
+		
 		switch (driveType)
 		{
 			case HDD:
@@ -166,7 +177,7 @@ class DriveSprite extends FlxSpriteGroup
 			}
 			
 			
-			if (spr.fileType == "doc")
+			if (spr.fileType == "doc" && !overmaxCap)
 			{
 				if (FlxG.random.bool(2))
 				{
