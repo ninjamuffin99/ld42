@@ -78,6 +78,39 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -141,6 +174,72 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/fullVirusReference.png", AssetType.IMAGE);
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
+		className.set ("assets/images/RENDERS/DED-DRIVE_Background.png", __ASSET__assets_images_renders_ded_drive_background_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Background.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_BombContact.png", __ASSET__assets_images_renders_ded_drive_bombcontact_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_BombContact.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_1.png", __ASSET__assets_images_renders_ded_drive_bomb_1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_1.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_2.png", __ASSET__assets_images_renders_ded_drive_bomb_2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_2.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_3.png", __ASSET__assets_images_renders_ded_drive_bomb_3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_3.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_4.png", __ASSET__assets_images_renders_ded_drive_bomb_4_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_4.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_5.png", __ASSET__assets_images_renders_ded_drive_bomb_5_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_5.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_CorruptedFiles.png", __ASSET__assets_images_renders_ded_drive_corruptedfiles_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_CorruptedFiles.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD1.png", __ASSET__assets_images_renders_ded_drive_deddrive_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD1.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD2.png", __ASSET__assets_images_renders_ded_drive_deddrive_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD2.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD3.png", __ASSET__assets_images_renders_ded_drive_deddrive_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD3.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD1.png", __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD1.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD2.png", __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD2.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD3.png", __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD3.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD1.png", __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD1.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD2.png", __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD2.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD3.png", __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD3.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD1.png", __ASSET__assets_images_renders_ded_drive_drivefull_text_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD1.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD2.png", __ASSET__assets_images_renders_ded_drive_drivefull_text_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD2.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD3.png", __ASSET__assets_images_renders_ded_drive_drivefull_text_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD3.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_GRIDTEXTURE_Overlay.png", __ASSET__assets_images_renders_ded_drive_gridtexture_overlay_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_GRIDTEXTURE_Overlay.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/DED-DRIVE_PAUSE_Overlay.png", __ASSET__assets_images_renders_ded_drive_pause_overlay_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_PAUSE_Overlay.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE1.png", __ASSET__assets_images_renders_example1_png);
+		type.set ("assets/images/RENDERS/EXAMPLE1.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE10.png", __ASSET__assets_images_renders_example10_png);
+		type.set ("assets/images/RENDERS/EXAMPLE10.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE2.png", __ASSET__assets_images_renders_example2_png);
+		type.set ("assets/images/RENDERS/EXAMPLE2.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE3.png", __ASSET__assets_images_renders_example3_png);
+		type.set ("assets/images/RENDERS/EXAMPLE3.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE4.png", __ASSET__assets_images_renders_example4_png);
+		type.set ("assets/images/RENDERS/EXAMPLE4.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE5.png", __ASSET__assets_images_renders_example5_png);
+		type.set ("assets/images/RENDERS/EXAMPLE5.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE6.png", __ASSET__assets_images_renders_example6_png);
+		type.set ("assets/images/RENDERS/EXAMPLE6.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE7.png", __ASSET__assets_images_renders_example7_png);
+		type.set ("assets/images/RENDERS/EXAMPLE7.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE8.png", __ASSET__assets_images_renders_example8_png);
+		type.set ("assets/images/RENDERS/EXAMPLE8.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/EXAMPLE9.png", __ASSET__assets_images_renders_example9_png);
+		type.set ("assets/images/RENDERS/EXAMPLE9.png", AssetType.IMAGE);
+		className.set ("assets/images/RENDERS/READMECUTIE-VISUALS.txt", __ASSET__assets_images_renders_readmecutie_visuals_txt);
+		type.set ("assets/images/RENDERS/READMECUTIE-VISUALS.txt", AssetType.TEXT);
 		className.set ("assets/images/virus.png", __ASSET__assets_images_virus_png);
 		type.set ("assets/images/virus.png", AssetType.IMAGE);
 		className.set ("assets/music/760401_Eyescaffe---8-bit.mp3", __ASSET__assets_music_760401_eyescaffe___8_bit_mp3);
@@ -289,6 +388,138 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/images-go-here.txt";
+		path.set (id, id);
+		
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/RENDERS/DED-DRIVE_Background.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_BombContact.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_Bomb_1.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_Bomb_2.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_Bomb_3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_Bomb_4.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_Bomb_5.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_CorruptedFiles.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD1.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD2.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD1.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD2.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD1.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD2.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD1.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD2.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_GRIDTEXTURE_Overlay.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/DED-DRIVE_PAUSE_Overlay.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE1.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE10.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE2.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE4.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE5.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE6.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE7.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE8.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/EXAMPLE9.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/RENDERS/READMECUTIE-VISUALS.txt";
 		path.set (id, id);
 		
 		type.set (id, AssetType.TEXT);
@@ -541,6 +772,105 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_Background.png", __ASSET__assets_images_renders_ded_drive_background_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Background.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_BombContact.png", __ASSET__assets_images_renders_ded_drive_bombcontact_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_BombContact.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_1.png", __ASSET__assets_images_renders_ded_drive_bomb_1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_1.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_2.png", __ASSET__assets_images_renders_ded_drive_bomb_2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_2.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_3.png", __ASSET__assets_images_renders_ded_drive_bomb_3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_3.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_4.png", __ASSET__assets_images_renders_ded_drive_bomb_4_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_4.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_Bomb_5.png", __ASSET__assets_images_renders_ded_drive_bomb_5_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_Bomb_5.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_CorruptedFiles.png", __ASSET__assets_images_renders_ded_drive_corruptedfiles_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_CorruptedFiles.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD1.png", __ASSET__assets_images_renders_ded_drive_deddrive_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD1.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD2.png", __ASSET__assets_images_renders_ded_drive_deddrive_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD2.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD3.png", __ASSET__assets_images_renders_ded_drive_deddrive_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD3.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD1.png", __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD1.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD2.png", __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD2.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD3.png", __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD3.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD1.png", __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD1.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD2.png", __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD2.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD3.png", __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD3.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD1.png", __ASSET__assets_images_renders_ded_drive_drivefull_text_hd1_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD1.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD2.png", __ASSET__assets_images_renders_ded_drive_drivefull_text_hd2_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD2.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD3.png", __ASSET__assets_images_renders_ded_drive_drivefull_text_hd3_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD3.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_GRIDTEXTURE_Overlay.png", __ASSET__assets_images_renders_ded_drive_gridtexture_overlay_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_GRIDTEXTURE_Overlay.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/DED-DRIVE_PAUSE_Overlay.png", __ASSET__assets_images_renders_ded_drive_pause_overlay_png);
+		type.set ("assets/images/RENDERS/DED-DRIVE_PAUSE_Overlay.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE1.png", __ASSET__assets_images_renders_example1_png);
+		type.set ("assets/images/RENDERS/EXAMPLE1.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE10.png", __ASSET__assets_images_renders_example10_png);
+		type.set ("assets/images/RENDERS/EXAMPLE10.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE2.png", __ASSET__assets_images_renders_example2_png);
+		type.set ("assets/images/RENDERS/EXAMPLE2.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE3.png", __ASSET__assets_images_renders_example3_png);
+		type.set ("assets/images/RENDERS/EXAMPLE3.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE4.png", __ASSET__assets_images_renders_example4_png);
+		type.set ("assets/images/RENDERS/EXAMPLE4.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE5.png", __ASSET__assets_images_renders_example5_png);
+		type.set ("assets/images/RENDERS/EXAMPLE5.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE6.png", __ASSET__assets_images_renders_example6_png);
+		type.set ("assets/images/RENDERS/EXAMPLE6.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE7.png", __ASSET__assets_images_renders_example7_png);
+		type.set ("assets/images/RENDERS/EXAMPLE7.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE8.png", __ASSET__assets_images_renders_example8_png);
+		type.set ("assets/images/RENDERS/EXAMPLE8.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/EXAMPLE9.png", __ASSET__assets_images_renders_example9_png);
+		type.set ("assets/images/RENDERS/EXAMPLE9.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/RENDERS/READMECUTIE-VISUALS.txt", __ASSET__assets_images_renders_readmecutie_visuals_txt);
+		type.set ("assets/images/RENDERS/READMECUTIE-VISUALS.txt", AssetType.TEXT);
 		
 		className.set ("assets/images/virus.png", __ASSET__assets_images_virus_png);
 		type.set ("assets/images/virus.png", AssetType.IMAGE);
@@ -1345,6 +1675,39 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_images_fulldrive_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_fullvirusreference_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_background_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_bombcontact_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_4_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_5_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_corruptedfiles_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_deddrive_hd1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_deddrive_hd2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_deddrive_hd3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_text_hd1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_text_hd2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_text_hd3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_gridtexture_overlay_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_ded_drive_pause_overlay_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example10_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example4_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example5_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example6_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example7_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example8_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_example9_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_renders_readmecutie_visuals_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_images_virus_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_760401_eyescaffe___8_bit_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
@@ -1425,6 +1788,39 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @:keep #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends lime.text.Font { public function new () { super (); name = "Nokia Cellphone FC Small"; } } 
 @:keep #if display private #end class __ASSET__flixel_fonts_monsterrat_ttf extends lime.text.Font { public function new () { super (); name = "Monsterrat"; } } 
 
@@ -1480,6 +1876,39 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:image("assets/images/fullDrive.png") #if display private #end class __ASSET__assets_images_fulldrive_png extends lime.graphics.Image {}
 @:image("assets/images/fullVirusReference.png") #if display private #end class __ASSET__assets_images_fullvirusreference_png extends lime.graphics.Image {}
 @:file("assets/images/images-go-here.txt") #if display private #end class __ASSET__assets_images_images_go_here_txt extends lime.utils.Bytes {}
+@:image("assets/images/RENDERS/DED-DRIVE_Background.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_background_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_BombContact.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_bombcontact_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_Bomb_1.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_1_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_Bomb_2.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_2_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_Bomb_3.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_3_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_Bomb_4.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_4_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_Bomb_5.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_bomb_5_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_CorruptedFiles.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_corruptedfiles_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD1.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_deddrive_hd1_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD2.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_deddrive_hd2_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD3.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_deddrive_hd3_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD1.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd1_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD2.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd2_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD3.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivebaycross_on_hd3_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD1.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd1_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD2.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd2_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD3.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_bg_hd3_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD1.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_text_hd1_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD2.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_text_hd2_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD3.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_drivefull_text_hd3_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_GRIDTEXTURE_Overlay.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_gridtexture_overlay_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/DED-DRIVE_PAUSE_Overlay.png") #if display private #end class __ASSET__assets_images_renders_ded_drive_pause_overlay_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE1.png") #if display private #end class __ASSET__assets_images_renders_example1_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE10.png") #if display private #end class __ASSET__assets_images_renders_example10_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE2.png") #if display private #end class __ASSET__assets_images_renders_example2_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE3.png") #if display private #end class __ASSET__assets_images_renders_example3_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE4.png") #if display private #end class __ASSET__assets_images_renders_example4_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE5.png") #if display private #end class __ASSET__assets_images_renders_example5_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE6.png") #if display private #end class __ASSET__assets_images_renders_example6_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE7.png") #if display private #end class __ASSET__assets_images_renders_example7_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE8.png") #if display private #end class __ASSET__assets_images_renders_example8_png extends lime.graphics.Image {}
+@:image("assets/images/RENDERS/EXAMPLE9.png") #if display private #end class __ASSET__assets_images_renders_example9_png extends lime.graphics.Image {}
+@:file("assets/images/RENDERS/READMECUTIE-VISUALS.txt") #if display private #end class __ASSET__assets_images_renders_readmecutie_visuals_txt extends lime.utils.Bytes {}
 @:image("assets/images/virus.png") #if display private #end class __ASSET__assets_images_virus_png extends lime.graphics.Image {}
 @:file("assets/music/760401_Eyescaffe---8-bit.mp3") #if display private #end class __ASSET__assets_music_760401_eyescaffe___8_bit_mp3 extends lime.utils.Bytes {}
 @:file("assets/music/music-goes-here.txt") #if display private #end class __ASSET__assets_music_music_goes_here_txt extends lime.utils.Bytes {}

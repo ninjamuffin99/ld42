@@ -86,7 +86,7 @@ class DriveSprite extends FlxSpriteGroup
 		switch (driveType)
 		{
 			case HDD:
-				maxCap = 500;
+				maxCap = 250;
 				transferSpeed = 3;
 				ejectSpeed = 10;
 			case SSD:
@@ -113,16 +113,16 @@ class DriveSprite extends FlxSpriteGroup
 			{
 				case "mp3":
 					sizeGB = 0.1;
-					fileColor = FlxColor.GREEN;
+					fileColor = 0xFFb0ff9b;
 				case "mp4":
 					sizeGB = FlxG.random.float(0.1, 5);
-					fileColor = FlxColor.RED;
+					fileColor = 0xFFc59bff;
 				case "os":
 					sizeGB = 3;
-					fileColor = FlxColor.ORANGE;
+					fileColor = 0xFF636aff;
 				case "doc":
 					sizeGB = FlxG.random.float(0.01, 0.5);
-					fileColor = FlxColor.BLUE;
+					fileColor = 0xFF9bf6ff;
 				default:
 					sizeGB = 20;
 					fileColor = FlxColor.YELLOW;

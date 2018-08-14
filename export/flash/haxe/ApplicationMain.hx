@@ -78,6 +78,138 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_Background.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_BombContact.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_Bomb_1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_Bomb_2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_Bomb_3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_Bomb_4.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_Bomb_5.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_CorruptedFiles.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DEDDRIVE_HD3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DriveBayCross_ON_HD3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_BG_HD3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_DRIVEFULL_TEXT_HD3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_GRIDTEXTURE_Overlay.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/DED-DRIVE_PAUSE_Overlay.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE10.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE4.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE5.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE6.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE7.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE8.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/EXAMPLE9.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/RENDERS/READMECUTIE-VISUALS.txt");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
 		urls.push ("assets/images/virus.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
@@ -335,7 +467,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "325",
+			build: "328",
 			company: "HaxeFlixel",
 			file: "ld42",
 			fps: 60,
