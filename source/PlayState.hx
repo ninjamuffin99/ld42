@@ -154,6 +154,8 @@ class PlayState extends FlxState
 		
 		if (virusTimer <= 0)
 		{
+			grpDrives.members[virusDrive].addFile("", 0, true);
+			
 			FlxG.sound.play(AssetPaths.dabom__mp3);
 			virusDrive = FlxG.random.int(0, grpDrives.length - 1);
 			virusTimer = virusTimerNeeded;
@@ -530,7 +532,7 @@ class PlayState extends FlxState
 			}
 			else if (moveType == "move")
 			{
-				
+				moveSpeed *= 0.2;
 			}
 			
 			terminalAdd("Please wait...moving files");

@@ -68,11 +68,11 @@ class DriveSprite extends FlxSpriteGroup
 				maxCap = 32;
 		}
 		
-		overcapTransShit = new FlxSprite().makeGraphic(Std.int(FlxG.width / 3), 410, FlxColor.BLACK);
+		overcapTransShit = new FlxSprite(5).makeGraphic(Std.int(FlxG.width / 3 - 10), 410, FlxColor.BLACK);
 		overcapTransShit.alpha = 0.7;
 		add(overcapTransShit);
 		
-		overcapWarning = new FlxSprite(FlxG.width * 0.3 * 0.3, 5).loadGraphic(AssetPaths.fullDrive__png);
+		overcapWarning = new FlxSprite(FlxG.width * 0.3 * 0.3 + 5, 5).loadGraphic(AssetPaths.fullDrive__png);
 		add(overcapWarning);
 	}
 	
@@ -129,14 +129,14 @@ class DriveSprite extends FlxSpriteGroup
 		
 		if (infected)
 		{
-			var deadFile:VirusSprite = new VirusSprite(0, 0);
+			var deadFile:VirusSprite = new VirusSprite(10, 0);
 			deadFile.infected = infected;
 			grpFiles.add(deadFile);
 		}
 		else
 		{
-			var newFile:FileSprite = new FileSprite(0, 0);
-			newFile.makeGraphic(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(sizeGB)), fileColor);
+			var newFile:FileSprite = new FileSprite(5, 0);
+			newFile.makeGraphic(Math.ceil(FlxG.width / 3) - 10, Math.ceil(fileSizeRatio(sizeGB)), fileColor);
 			newFile.size = sizeGB;
 			newFile.fileType = fileType;
 			newFile.infected = infected;
@@ -151,11 +151,9 @@ class DriveSprite extends FlxSpriteGroup
 		grpFiles.forEach(function(spr:FileSprite)
 		{
 			var arrayPos = grpFiles.members.indexOf(spr);
-			var prevSpr:FlxSprite;
-			if (spr.infected)
-			{
-				spr.size = maxCap * 0.2;
-			}
+			var prevSpr:FileSprite = new FileSprite();
+			var nextSpr:FileSprite = new FileSprite();
+			
 			if (arrayPos > 0)
 			{
 				prevSpr = grpFiles.members[arrayPos - 1];
@@ -164,16 +162,38 @@ class DriveSprite extends FlxSpriteGroup
 			else
 			{
 				spr.y = 5;
+				nextSpr = grpFiles.members[arrayPos + 1];
+			}
+			
+			if (arrayPos < grpFiles.members.length - 1)
+			{
+				nextSpr = grpFiles.members[arrayPos + 1];
+			}
+			else
+			{
+				prevSpr = grpFiles.members[arrayPos - 1];
+			}
+			
+			if (prevSpr.infected || nextSpr.infected)
+			{
+				if (FlxG.random.bool(0.1) && !spr.infected)
+				{
+					var newVirus:VirusSprite = new VirusSprite(10);
+					grpFiles.add(newVirus);
+					grpFiles.remove(spr, true);
+					
+					newVirus.size = virusFileSizeRatio(40);
+				}
 			}
 			
 			if (!spr.infected)
 			{
-				spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(spr.size)));
+				spr.setGraphicSize(Math.ceil(FlxG.width / 3) - 10, Math.ceil(fileSizeRatio(spr.size)));
 				spr.updateHitbox();
 			}
 			else
 			{
-				
+				spr.size = virusFileSizeRatio(40);
 			}
 			
 			
@@ -199,6 +219,11 @@ class DriveSprite extends FlxSpriteGroup
 	public function fileSizeRatio(size:Float):Float
 	{
 		return FlxMath.remapToRange(size, 0, maxCap, 0, 350);
+	}
+	
+	public function virusFileSizeRatio(height:Float):Float
+	{
+		return FlxMath.remapToRange(height, 0, 350, 0, maxCap);
 	}
 	
 }
