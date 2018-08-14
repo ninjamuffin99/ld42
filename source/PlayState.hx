@@ -43,10 +43,11 @@ class PlayState extends FlxState
 	
 	private var cooldown:Float = 0;
 	
-	private var points:Float = 0;
+	public static var points:Float = 0;
 	
 	override public function create():Void
 	{
+		points = 0;
 		FlxG.camera.bgColor = 0xFF53575d;
 		
 		var cmdBG:FlxSprite = new FlxSprite(0, 410).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -409,6 +410,12 @@ class PlayState extends FlxState
 						{
 							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 							{
+								if (s.infected)
+								{
+									points -= s.size * 2;
+									terminalAdd("LOST " + points + " OF POINTS DUE TO UPLOADING A VIRUS");
+								}
+								
 								grpDrives.members[input].grpFiles.remove(s, true);
 								
 								moveableItems -= 1;
