@@ -530,43 +530,47 @@ class PlayState extends FlxState
 			{
 				while (moveableItems > 0)
 				{
-					grpDrives.members[output].updateSize();
+					
 					
 					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 					{
-						
-						switch (moveType)
+						grpDrives.members[output].updateSize();
+						if (!grpDrives.members[output].overmaxCap)
 						{
-							case "push":
-								if (!grpDrives.members[output].overmaxCap)
-								{		
+							switch (moveType)
+							{
+								case "push":
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
 									
 									itemsMoved += 1;
 									
 									moveableItems -= 1;
-								}
-							case "keep":
-								if (s.fileType != commands[1] && !grpDrives.members[output].overmaxCap)
-								{		
-									grpDrives.members[output].grpFiles.add(s);
-									grpDrives.members[input].grpFiles.remove(s, true);
 									
-									itemsMoved += 1;
-									
-									moveableItems -= 1;
-								}
-							case "move":
-								if (s.fileType == commands[1] && !grpDrives.members[output].overmaxCap)
-								{
-									grpDrives.members[output].grpFiles.add(s);
-									grpDrives.members[input].grpFiles.remove(s, true);
-									itemsMoved += 1;
-									
-									moveableItems -= 1;
-								}
+								case "keep":
+									if (s.fileType != commands[1])
+									{		
+										grpDrives.members[output].grpFiles.add(s);
+										grpDrives.members[input].grpFiles.remove(s, true);
+										
+										itemsMoved += 1;
+										
+										moveableItems -= 1;
+									}
+								case "move":
+									if (s.fileType == commands[1])
+									{
+										grpDrives.members[output].grpFiles.add(s);
+										grpDrives.members[input].grpFiles.remove(s, true);
+										itemsMoved += 1;
+										
+										moveableItems -= 1;
+									}
+							}
 						}
+						else
+							moveableItems = 0;
+						
 					});
 					
 				}
