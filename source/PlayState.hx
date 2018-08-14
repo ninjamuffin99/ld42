@@ -525,9 +525,13 @@ class PlayState extends FlxState
 			var moveableItems:Int = grpDrives.members[input].grpFiles.length;
 			
 			if (moveType == "keep")
+			{
 				moveSpeed *= 1.1;
+			}
 			else if (moveType == "move")
+			{
 				
+			}
 			
 			terminalAdd("Please wait...moving files");
 			new FlxTimer().start(moveSpeed, function(t:FlxTimer)
@@ -558,17 +562,18 @@ class PlayState extends FlxState
 										
 										itemsMoved += 1;
 										
-										moveableItems -= 1;
 									}
+									
+									moveableItems -= 1;
 								case "move":
 									if (s.fileType == commands[1])
 									{
 										grpDrives.members[output].grpFiles.add(s);
 										grpDrives.members[input].grpFiles.remove(s, true);
 										itemsMoved += 1;
-										
-										moveableItems -= 1;
 									}
+									
+									moveableItems -= 1;
 							}
 						}
 						else
