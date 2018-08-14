@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
@@ -114,6 +115,10 @@ class DriveSprite extends FlxSpriteGroup
 					spr.size += FlxG.random.float(0.01, 0.03);
 				}
 			}
+			else if (spr.fileType == "os")
+			{
+				
+			}
 			
 			fileSizeAdd += spr.size;
 		});
@@ -138,7 +143,7 @@ class DriveSprite extends FlxSpriteGroup
 					fileColor = FlxColor.RED;
 				case "os":
 					sizeGB = 3;
-					fileColor = FlxColor.GRAY;
+					fileColor = FlxColor.ORANGE;
 				case "doc":
 					sizeGB = FlxG.random.float(0.01, 0.5);
 					fileColor = FlxColor.BLUE;

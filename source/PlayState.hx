@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -78,6 +79,7 @@ class PlayState extends FlxState
 			
 			
 			newDrive.addFile("os");
+			FlxGridOverlay.overlay(newDrive.grpFiles.members[0], 10, 10);
 			
 			var randoFiles:Int = FlxG.random.int(1, 6);
 			while (randoFiles > 0)
@@ -217,6 +219,7 @@ class PlayState extends FlxState
 				if (f.fileType == "os")
 				{
 					osCounter += 1;
+					
 				}
 			}
 		}
@@ -265,9 +268,10 @@ class PlayState extends FlxState
 			}
 			if (Std.parseInt(commands[1]) >= 2)
 			{
-				
+				terminalAdd("move <filetype> <in> <out>	- moves only the specified filetype from input drive to the output drive");
+				terminalAdd("keep <filetype> <in> <out> - moves every file unless it is the specified filetype from input to output");
 				terminalAdd("mute					- toggles mute");
-				terminalAdd("push <input> <output>	- moves every file from the input drive to the output drive");
+				terminalAdd("push <in> <out>	- moves every file from the input drive to the output drive");
 				terminalAdd("score					- checks your current score");
 				terminalAdd("screenshot				- take a screenshot and saves it");
 				terminalAdd("volume <volume>		- changes the volume between any value between 0 and 100");
@@ -343,6 +347,155 @@ class PlayState extends FlxState
 			case "mute":
 				FlxG.sound.toggleMuted();
 				terminalAdd("muted: " + FlxG.sound.muted);
+				
+			case "move":
+				var input:Int = Std.parseInt(commands[2]);
+				var output:Int = Std.parseInt(commands[3]);
+				
+				var possibleFile:Bool = false;
+				for (i in DriveSprite.fileTypes)
+				{
+					if (i == Std.string(commands[1]))
+						possibleFile = true;
+				}
+				
+				if (commands[1] == null || !possibleFile)
+				{
+					terminalAdd("error, please specify a proper filetype (os, mp4, mp3, doc)");
+					return;
+				}
+				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
+				// whereas if I use input/outputDrive variables, I cant check for null
+				if (Std.parseInt(commands[2]) != null && Std.parseInt(commands[3]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
+				{
+					var moveFileSize:Float = 0;
+					
+					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+					{
+						if (s.fileType == commands[1])
+							moveFileSize += moveFileSize;
+						
+					});
+					
+					
+					
+					if (moveFileSize + grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+					{
+						terminalAdd("Cannot complete action, drive " + output + " would be over max capacity (" + grpDrives.members[output].maxCap + "GB)");
+						terminalAdd("Try only pushing specific filetypes");
+						return;
+					}
+					var moveSpeed:Float = 0;
+					
+					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
+					
+					var itemsMoved:Int = 0;
+					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
+					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
+					
+					moveSpeed *= 0.2;
+					
+					terminalAdd("Please wait...moving files");
+					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
+					{
+						
+						while (moveableItems > 0)
+						{
+							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+							{
+								if (s.fileType == commands[1])
+								{
+									grpDrives.members[output].grpFiles.add(s);
+									grpDrives.members[input].grpFiles.remove(s, true);
+									itemsMoved += 1;
+								}
+								
+								
+								moveableItems -= 1;
+							});
+						}
+						
+						terminalAdd("moved " + itemsMoved + " " + commands[1] + " files to drive " + output);
+					});
+					
+				}
+				else
+				{
+					driveError();
+				}
+			case "keep":
+				var input:Int = Std.parseInt(commands[2]);
+				var output:Int = Std.parseInt(commands[3]);
+				
+				var possibleFile:Bool = false;
+				for (i in DriveSprite.fileTypes)
+				{
+					if (i == Std.string(commands[1]))
+						possibleFile = true;
+				}
+				
+				if (commands[1] == null || !possibleFile)
+				{
+					terminalAdd("error, please specify a proper filetype (os, mp4, mp3, doc)");
+					return;
+				}
+				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
+				// whereas if I use input/outputDrive variables, I cant check for null
+				if (Std.parseInt(commands[2]) != null && Std.parseInt(commands[3]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
+				{
+					var moveFileSize:Float = 0;
+					
+					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+					{
+						if (s.fileType != commands[1])
+							moveFileSize += moveFileSize;
+						
+					});
+					
+					if (moveFileSize + grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+					{
+						terminalAdd("Cannot complete action, drive " + output + " would be over max capacity (" + grpDrives.members[output].maxCap + "GB)");
+						terminalAdd("Try only pushing specific filetypes");
+						return;
+					}
+					var moveSpeed:Float = 0;
+					
+					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
+					
+					var itemsMoved:Int = 0;
+					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
+					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
+					
+					moveSpeed *= 1.1;
+					
+					terminalAdd("Please wait...moving files");
+					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
+					{
+						
+						while (moveableItems > 0)
+						{
+							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
+							{
+								if (s.fileType != commands[1])
+								{
+									grpDrives.members[output].grpFiles.add(s);
+									grpDrives.members[input].grpFiles.remove(s, true);
+									itemsMoved += 1;
+								}
+								
+								
+								moveableItems -= 1;
+							});
+						}
+						
+						terminalAdd("moved " + itemsMoved + " files from drive" + input + " to drive " + output);
+					});
+					
+				}
+				else
+				{
+					driveError();
+				}
 			case "freeze":
 				cooldown = 5;
 			case "volume":
@@ -367,15 +520,7 @@ class PlayState extends FlxState
 					
 					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 					{
-						if (commands[3] == null)
-						{
-							moveFileSize += s.size;
-						}
-						else
-						{
-							if (s.fileType == commands[3])
-								moveFileSize += moveFileSize;
-						}
+						moveFileSize += s.size;
 					});
 					
 					
@@ -394,9 +539,6 @@ class PlayState extends FlxState
 					// doin this while loop garbage because for some reason the forEach() function doesn't go through every item???
 					var moveableItems:Int = grpDrives.members[input].grpFiles.length;
 					
-					if (commands[3] != null)
-						moveSpeed *= 0.2;
-					
 					terminalAdd("Please wait...moving files");
 					new FlxTimer().start(moveSpeed, function(t:FlxTimer)
 					{
@@ -405,31 +547,15 @@ class PlayState extends FlxState
 						{
 							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 							{
-								if (commands[3] == null)
-								{
-									grpDrives.members[output].grpFiles.add(s);
-									grpDrives.members[input].grpFiles.remove(s, true);
-									
-									itemsMoved += 1;
-								}
-								else
-								{
-									if (s.fileType == commands[3])
-									{
-										grpDrives.members[output].grpFiles.add(s);
-										grpDrives.members[input].grpFiles.remove(s, true);
-										itemsMoved += 1;
-									}
-								}
+								grpDrives.members[output].grpFiles.add(s);
+								grpDrives.members[input].grpFiles.remove(s, true);
+								
+								itemsMoved += 1;
 								
 								moveableItems -= 1;
 							});
 						}
-						
-						
 						terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
-						if (commands[3] != null)
-							terminalAdd("moved only " + commands[3] + " files to drive " + output);
 					});
 					
 				}
