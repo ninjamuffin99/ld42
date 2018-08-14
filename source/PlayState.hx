@@ -408,10 +408,10 @@ class PlayState extends FlxState
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
 									itemsMoved += 1;
+									
+									moveableItems -= 1;
 								}
 								
-								
-								moveableItems -= 1;
 							});
 						}
 						
@@ -481,10 +481,8 @@ class PlayState extends FlxState
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
 									itemsMoved += 1;
+									moveableItems -= 1;
 								}
-								
-								
-								moveableItems -= 1;
 							});
 						}
 						
