@@ -534,10 +534,11 @@ class PlayState extends FlxState
 					
 					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 					{
+						
 						switch (moveType)
 						{
 							case "push":
-								if (grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
+								if (!grpDrives.members[output].overmaxCap)
 								{		
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
@@ -547,7 +548,7 @@ class PlayState extends FlxState
 									moveableItems -= 1;
 								}
 							case "keep":
-								if (s.fileType != commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
+								if (s.fileType != commands[1] && !grpDrives.members[output].overmaxCap)
 								{		
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
@@ -557,9 +558,8 @@ class PlayState extends FlxState
 									moveableItems -= 1;
 								}
 							case "move":
-								if (s.fileType == commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
+								if (s.fileType == commands[1] && !grpDrives.members[output].overmaxCap)
 								{
-									
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
 									itemsMoved += 1;
@@ -571,7 +571,7 @@ class PlayState extends FlxState
 					
 				}
 				terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
-				if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+				if (grpDrives.members[output].overmaxCap)
 					terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
 			});
 			

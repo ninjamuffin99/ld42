@@ -70,8 +70,6 @@ class DriveSprite extends FlxSpriteGroup
 	
 	override public function update(elapsed:Float):Void 
 	{
-		
-		
 		switch (driveType)
 		{
 			case HDD:
