@@ -260,10 +260,11 @@ class PlayState extends FlxState
 				
 				terminalAdd("tutorial				- sends some game info");
 				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
+				terminalAdd("push <in> <out>	- moves every file from the input drive to the output drive");
 				terminalAdd("credits 					- shoutouts and also the goobers who made this game"); // dont knwo why but this needs an extra tab
 				terminalAdd("clear					- clears the terminal window");
 				terminalAdd("driveinfo				- gives you information for each installed drive");
-				terminalAdd("eject <input>			- ejects the input drive, and re-inserts a new drive");
+				terminalAdd("upload <input>			- ejects the input drive and uploads the content to the cloud, and re-inserts a new drive");
 				terminalAdd("page 1 of 2, use command 'help 2' to see next page");
 			}
 			if (Std.parseInt(commands[1]) >= 2)
@@ -271,16 +272,14 @@ class PlayState extends FlxState
 				terminalAdd("move <filetype> <in> <out>	- moves only the specified filetype from input drive to the output drive");
 				terminalAdd("keep <filetype> <in> <out> - moves every file unless it is the specified filetype from input to output");
 				terminalAdd("mute					- toggles mute");
-				terminalAdd("push <in> <out>	- moves every file from the input drive to the output drive");
 				terminalAdd("score					- checks your current score");
 				terminalAdd("screenshot				- take a screenshot and saves it");
 				terminalAdd("volume <volume>		- changes the volume between any value between 0 and 100");
 				terminalAdd("page 2 of 2");
 			}
-				
 			
 			case "tutorial":
-				terminalAdd("The game is controlled via the ingame command line only, use it to move around the data to keep it safe from the virus! Ejecting drives gets you points, but if there's virus bits in there you'll get a massive point deduction!");
+				terminalAdd("The game is controlled via the ingame command line only, use it to move around the data to keep it safe from the virus! Uploading drives gets you points, but if there's virus bits in there you'll get a massive point deduction!");
 				terminalAdd("and make sure you don't lose your OS files!");
 			case "credits":
 				creds();
@@ -296,7 +295,6 @@ class PlayState extends FlxState
 					terminalAdd("BrandyBuizel");
 					terminalAdd("muctucc");
 					terminalAdd("page 1 of 2");
-				
 				}
 				
 				if (Std.parseInt(commands[1]) >= 2)
@@ -367,24 +365,7 @@ class PlayState extends FlxState
 				// in this if, i use the Std.parseInt() function because it can also check if nulls and shit
 				// whereas if I use input/outputDrive variables, I cant check for null
 				if (Std.parseInt(commands[2]) != null && Std.parseInt(commands[3]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
-				{
-					var moveFileSize:Float = 0;
-					
-					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
-					{
-						if (s.fileType == commands[1])
-							moveFileSize += moveFileSize;
-						
-					});
-					
-					
-					
-					if (moveFileSize + grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
-					{
-						terminalAdd("Cannot complete action, drive " + output + " would be over max capacity (" + grpDrives.members[output].maxCap + "GB)");
-						terminalAdd("Try only pushing specific filetypes");
-						return;
-					}
+				{		
 					var moveSpeed:Float = 0;
 					
 					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
@@ -403,19 +384,27 @@ class PlayState extends FlxState
 						{
 							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 							{
-								if (s.fileType == commands[1])
+								
+								if (s.fileType == commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
 								{
+									
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
 									itemsMoved += 1;
 									
 									moveableItems -= 1;
 								}
-								
+								else if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+								{
+									moveableItems = 0;
+								}
 							});
 						}
 						
 						terminalAdd("moved " + itemsMoved + " " + commands[1] + " files to drive " + output);
+						if (grpDrives.members[output].curSize >= grpDrives.members[output\].maxCap)
+							terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
+						
 					});
 					
 				}
@@ -443,21 +432,6 @@ class PlayState extends FlxState
 				// whereas if I use input/outputDrive variables, I cant check for null
 				if (Std.parseInt(commands[2]) != null && Std.parseInt(commands[3]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
 				{
-					var moveFileSize:Float = 0;
-					
-					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
-					{
-						if (s.fileType != commands[1])
-							moveFileSize += moveFileSize;
-						
-					});
-					
-					if (moveFileSize + grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
-					{
-						terminalAdd("Cannot complete action, drive " + output + " would be over max capacity (" + grpDrives.members[output].maxCap + "GB)");
-						terminalAdd("Try only pushing specific filetypes");
-						return;
-					}
 					var moveSpeed:Float = 0;
 					
 					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
@@ -476,17 +450,24 @@ class PlayState extends FlxState
 						{
 							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 							{
-								if (s.fileType != commands[1])
+								if (s.fileType != commands[1] && grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
 								{
 									grpDrives.members[output].grpFiles.add(s);
 									grpDrives.members[input].grpFiles.remove(s, true);
 									itemsMoved += 1;
 									moveableItems -= 1;
 								}
+								else if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+								{
+									moveableItems = 0;
+								}
 							});
 						}
 						
 						terminalAdd("moved " + itemsMoved + " files from drive" + input + " to drive " + output);
+						if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+							terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
+						
 					});
 					
 				}
@@ -514,21 +495,6 @@ class PlayState extends FlxState
 				// whereas if I use input/outputDrive variables, I cant check for null
 				if (Std.parseInt(commands[1]) != null && Std.parseInt(commands[2]) != null && FlxMath.inBounds(input, 0, grpDrives.length - 1) && FlxMath.inBounds(output, 0, grpDrives.length - 1))
 				{
-					var moveFileSize:Float = 0;
-					
-					grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
-					{
-						moveFileSize += s.size;
-					});
-					
-					
-					
-					if (moveFileSize + grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
-					{
-						terminalAdd("Cannot complete action, drive " + output + " would be over max capacity (" + grpDrives.members[output].maxCap + "GB)");
-						terminalAdd("Try only pushing specific filetypes");
-						return;
-					}
 					var moveSpeed:Float = 0;
 					
 					moveSpeed = grpDrives.members[input].transferSpeed + grpDrives.members[output].transferSpeed;
@@ -545,15 +511,23 @@ class PlayState extends FlxState
 						{
 							grpDrives.members[input].grpFiles.forEachExists(function(s:FileSprite)
 							{
-								grpDrives.members[output].grpFiles.add(s);
-								grpDrives.members[input].grpFiles.remove(s, true);
+								if (grpDrives.members[output].curSize <= grpDrives.members[output].maxCap)
+								{
+									grpDrives.members[output].grpFiles.add(s);
+									grpDrives.members[input].grpFiles.remove(s, true);
+									
+									itemsMoved += 1;
+									
+									moveableItems -= 1;
+								}
+								else
+									moveableItems = 0;
 								
-								itemsMoved += 1;
-								
-								moveableItems -= 1;
 							});
 						}
 						terminalAdd(itemsMoved + " items moved from drive " + input + " to drive " + output);
+						if (grpDrives.members[output].curSize >= grpDrives.members[output].maxCap)
+							terminalAdd("WARNING: DRIVE IS AT MAX CAPACITY, PLEASE WIPE OR UPLOAD");
 					});
 					
 				}
@@ -562,12 +536,12 @@ class PlayState extends FlxState
 					var drvJunk = grpDrives.length - 1;
 					terminalAdd("Error in input, expects drive numbers between 0-" + drvJunk + " in parameters");
 				}
-			case "eject":
+			case "upload":
 				var input:Int = Std.parseInt(commands[1]);
 				if (Std.parseInt(commands[1]) != null && FlxMath.inBounds(input, 0, 2))
 				{
 					points += grpDrives.members[input].curSize;
-					terminalAdd("Ejecting drive " + input + " - " + grpDrives.members[input].curSize + "GB of data, please wait");
+					terminalAdd("Uploading drive " + input + " - " + grpDrives.members[input].curSize + "GB of data, please wait");
 					
 					new FlxTimer().start(grpDrives.members[input].ejectSpeed, function(t:FlxTimer)
 					{
@@ -601,7 +575,7 @@ class PlayState extends FlxState
 				FlxScreenGrab.grab(null, true, true);
 				terminalAdd("screenshot taken");
 			case "score":
-				terminalAdd("You have " + points + " points (how many GBs you've ejected)");
+				terminalAdd("You have " + points + " points (how many GBs you've uploaded)");
 			default:
 				terminalAdd(curCommand + " is not a recognized command... try 'help'");
 		}			

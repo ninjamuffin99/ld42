@@ -105,8 +105,16 @@ class DriveSprite extends FlxSpriteGroup
 				spr.y = 5;
 			}
 			
-			spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(spr.size)));
-			spr.updateHitbox();
+			if (!spr.infected)
+			{
+				spr.setGraphicSize(Math.ceil(FlxG.width / 3), Math.ceil(fileSizeRatio(spr.size)));
+				spr.updateHitbox();
+			}
+			else
+			{
+				
+			}
+			
 			
 			if (spr.fileType == "doc")
 			{
@@ -114,10 +122,6 @@ class DriveSprite extends FlxSpriteGroup
 				{
 					spr.size += FlxG.random.float(0.01, 0.03);
 				}
-			}
-			else if (spr.fileType == "os")
-			{
-				
 			}
 			
 			fileSizeAdd += spr.size;
