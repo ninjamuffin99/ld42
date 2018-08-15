@@ -79,7 +79,6 @@ class PlayState extends FlxState
 			
 			
 			newDrive.addFile("os");
-			FlxGridOverlay.overlay(newDrive.grpFiles.members[0], 10, 10);
 			
 			var randoFiles:Int = FlxG.random.int(1, 6);
 			while (randoFiles > 0)
@@ -120,6 +119,9 @@ class PlayState extends FlxState
 		add(bordersOverlay);
 		
 		FlxG.sound.playMusic("assets/music/760401_Eyescaffe---8-bit.mp3", 0.35);
+		
+		listCommands.push("tutorial");
+		commandParser("tutorial");
 		
 		super.create();
 	}
@@ -259,20 +261,19 @@ class PlayState extends FlxState
 			case "help":
 			if (Std.parseInt(commands[1]) <= 1 || Std.parseInt(commands[1]) == null)
 			{
-				
-				terminalAdd("tutorial				- sends some game info");
-				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
 				terminalAdd("push <in> <out>	- moves every file from the input drive to the output drive");
-				terminalAdd("clear					- clears the terminal window");
-				terminalAdd("clean <input>			- cleans the viruses out (Doesn't recover the files however, just stops them from spreading");
+				terminalAdd("move <filetype> <in> <out>	- moves only the specified filetype from input drive to the output drive");
+				terminalAdd("keep <filetype> <in> <out> - moves every file unless it is the specified filetype from input to output");
+				terminalAdd("wipe <input>			- wipes the drive completely clean, making it completely empty");
+				terminalAdd("clean <input>			- cleans the viruses out of input drive");
 				terminalAdd("driveinfo				- gives you information for each installed drive");
-				terminalAdd("upload <input>			- ejects the input drive and uploads the content to the cloud, and re-inserts a new drive");
+				terminalAdd("upload <input>			- uploads the content to the cloud, and re-inserts a new drive");
 				terminalAdd("page 1 of 2, use command 'help 2' to see next page");
 			}
 			if (Std.parseInt(commands[1]) >= 2)
 			{
-				terminalAdd("move <filetype> <in> <out>	- moves only the specified filetype from input drive to the output drive");
-				terminalAdd("keep <filetype> <in> <out> - moves every file unless it is the specified filetype from input to output");
+				terminalAdd("tutorial				- sends some game info");
+				terminalAdd("clear					- clears the terminal window");
 				terminalAdd("mute					- toggles mute");
 				terminalAdd("score					- checks your current score");
 				terminalAdd("screenshot				- take a screenshot and saves it");
@@ -282,8 +283,12 @@ class PlayState extends FlxState
 			}
 			
 			case "tutorial":
-				terminalAdd("The game is controlled via the ingame command line only, use it to move around the data to keep it safe from the virus! Uploading drives gets you points, but if there's virus bits in there you'll get a massive point deduction!");
+				terminalAdd("The game is controlled via the ingame command line only,");
+				terminalAdd("use it to move around the data to keep it safe from the virus! "); 
+				terminalAdd("Uploading drives gets you points, ");
+				terminalAdd("but if there's virus bits in there you'll get a massive point deduction !");
 				terminalAdd("and make sure you don't lose your OS files!");
+				terminalAdd("type 'help' for list of available commands");
 			case "credits":
 				creds();
 			case "creds":
