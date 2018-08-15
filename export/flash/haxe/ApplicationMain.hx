@@ -62,6 +62,10 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/DED-DRIVE_BackgroundHDD.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/driveNumbers.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
@@ -483,7 +487,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "371",
+			build: "388",
 			company: "HaxeFlixel",
 			file: "ld42",
 			fps: 60,

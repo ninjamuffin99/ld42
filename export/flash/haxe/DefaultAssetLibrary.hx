@@ -115,6 +115,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -170,6 +171,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/borders.png", AssetType.IMAGE);
 		className.set ("assets/images/deadDrives.png", __ASSET__assets_images_deaddrives_png);
 		type.set ("assets/images/deadDrives.png", AssetType.IMAGE);
+		className.set ("assets/images/DED-DRIVE_BackgroundHDD.png", __ASSET__assets_images_ded_drive_backgroundhdd_png);
+		type.set ("assets/images/DED-DRIVE_BackgroundHDD.png", AssetType.IMAGE);
 		className.set ("assets/images/driveNumbers.png", __ASSET__assets_images_drivenumbers_png);
 		type.set ("assets/images/driveNumbers.png", AssetType.IMAGE);
 		className.set ("assets/images/fullDrive.png", __ASSET__assets_images_fulldrive_png);
@@ -384,6 +387,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/deadDrives.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/DED-DRIVE_BackgroundHDD.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -788,6 +795,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/images/deadDrives.png", __ASSET__assets_images_deaddrives_png);
 		type.set ("assets/images/deadDrives.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/DED-DRIVE_BackgroundHDD.png", __ASSET__assets_images_ded_drive_backgroundhdd_png);
+		type.set ("assets/images/DED-DRIVE_BackgroundHDD.png", AssetType.IMAGE);
 		
 		className.set ("assets/images/driveNumbers.png", __ASSET__assets_images_drivenumbers_png);
 		type.set ("assets/images/driveNumbers.png", AssetType.IMAGE);
@@ -1711,6 +1721,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_images_bomb_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_borders_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_deaddrives_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_ded_drive_backgroundhdd_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_drivenumbers_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_fulldrive_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_fullvirusreference_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -1869,6 +1880,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
 @:keep #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends lime.text.Font { public function new () { super (); name = "Nokia Cellphone FC Small"; } } 
 @:keep #if display private #end class __ASSET__flixel_fonts_monsterrat_ttf extends lime.text.Font { public function new () { super (); name = "Monsterrat"; } } 
 
@@ -1920,6 +1932,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:image("assets/images/bomb.png") #if display private #end class __ASSET__assets_images_bomb_png extends lime.graphics.Image {}
 @:image("assets/images/borders.png") #if display private #end class __ASSET__assets_images_borders_png extends lime.graphics.Image {}
 @:image("assets/images/deadDrives.png") #if display private #end class __ASSET__assets_images_deaddrives_png extends lime.graphics.Image {}
+@:image("assets/images/DED-DRIVE_BackgroundHDD.png") #if display private #end class __ASSET__assets_images_ded_drive_backgroundhdd_png extends lime.graphics.Image {}
 @:image("assets/images/driveNumbers.png") #if display private #end class __ASSET__assets_images_drivenumbers_png extends lime.graphics.Image {}
 @:image("assets/images/fullDrive.png") #if display private #end class __ASSET__assets_images_fulldrive_png extends lime.graphics.Image {}
 @:image("assets/images/fullVirusReference.png") #if display private #end class __ASSET__assets_images_fullvirusreference_png extends lime.graphics.Image {}

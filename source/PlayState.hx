@@ -51,6 +51,9 @@ class PlayState extends FlxState
 		points = 0;
 		FlxG.camera.bgColor = 0xFF53575d;
 		
+		var driveBG:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.DED_DRIVE_BackgroundHDD__png);
+		add(driveBG);
+		
 		var cmdBG:FlxSprite = new FlxSprite(0, 410).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(cmdBG);
 		
@@ -59,6 +62,10 @@ class PlayState extends FlxState
 		_commandLine.background = false;
 		_commandLine.caretWidth = 3;
 		add(_commandLine);
+		
+		var termThingie:FlxText = new FlxText(_commandLine.x - 13, _commandLine.y + 1, 0, ">", 16);
+		termThingie.font = AssetPaths.CONSOLA__TTF;
+		add(termThingie);
 		
 		_grpPrevCommands = new FlxTypedGroup<FlxText>();
 		add(_grpPrevCommands);
@@ -88,14 +95,7 @@ class PlayState extends FlxState
 				randoFiles -= 1;
 			}
 			
-			
-			var driveNumber:FlxSprite = new FlxSprite(newDrive.getMidpoint().x - 28, 150).loadGraphic(AssetPaths.driveNumbers__png, true, 56, 45);
-			driveNumber.animation.frameIndex = driveCount;
-			add(driveNumber);
-			
 			driveCount += 1;
-			
-			
 		}
 		
 		virusDrive = FlxG.random.int(0, grpDrives.length - 1);
@@ -118,6 +118,14 @@ class PlayState extends FlxState
 		
 		var bordersOverlay:FlxSprite = new FlxSprite(0, 0).loadGraphic(AssetPaths.borders__png);
 		add(bordersOverlay);
+		
+		var gridStuff:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.DED_DRIVE_GRIDTEXTURE_Overlay__png);
+		add(gridStuff);
+		gridStuff.alpha = 0.7;
+		
+		var gridStuff2:FlxSprite = new FlxSprite(0, gridStuff.height).loadGraphic(AssetPaths.DED_DRIVE_GRIDTEXTURE_Overlay__png);
+		add(gridStuff2);
+		gridStuff2.alpha = gridStuff.alpha;
 		
 		FlxG.sound.playMusic("assets/music/760401_Eyescaffe---8-bit.mp3", 0.35);
 		

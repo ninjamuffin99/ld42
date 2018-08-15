@@ -133,6 +133,7 @@ class DriveSprite extends FlxSpriteGroup
 		{
 			var deadFile:VirusSprite = new VirusSprite(10, 0);
 			deadFile.infected = infected;
+			deadFile.size = virusFileSizeRatio(40);
 			grpFiles.add(deadFile);
 			
 			numViruses += 1;
