@@ -467,7 +467,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "342",
+			build: "351",
 			company: "HaxeFlixel",
 			file: "ld42",
 			fps: 60,

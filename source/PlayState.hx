@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSubState;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.plugin.screengrab.FlxScreenGrab;
 import flixel.addons.ui.FlxInputText;
@@ -139,6 +140,15 @@ class PlayState extends FlxState
 			FlxG.sound.play("assets/sounds/keyClickRelease" + FlxG.random.int(1, 4) + ".mp3");
 		}
 		
+		_commandLine.hasFocus = true;
+		
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			_commandLine.hasFocus = false;
+			openSubState(new PauseSubstate());
+			
+		}
+		
 		_txtTimer.text = FlxMath.roundDecimal(downloadTimer, 2) + "s until new downloads";
 		bombSprite.x = grpDrives.members[virusDrive].getMidpoint().x - 20;
 		bombCountdown.x = bombSprite.x;
@@ -213,7 +223,7 @@ class PlayState extends FlxState
 			}
 		}
 		
-		_commandLine.hasFocus = true;
+		
 		
 		var osCounter:Int = 0;
 		for (d in grpDrives.members)
@@ -237,6 +247,14 @@ class PlayState extends FlxState
 			case 2:
 				FlxG.sound.music.volume = 0;
 		}
+	}
+	
+	override public function openSubState(SubState:FlxSubState):Void 
+	{
+		
+		super.openSubState(SubState);
+		
+		_commandLine.hasFocus = false;
 	}
 	
 	private function commandParser(cmd:String):Void
