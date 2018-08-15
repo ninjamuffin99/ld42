@@ -145,6 +145,7 @@ class PlayState extends FlxState
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			_commandLine.hasFocus = false;
+			FlxG.sound.music.fadeOut(0.3, 0.15);
 			openSubState(new PauseSubstate());
 			
 		}

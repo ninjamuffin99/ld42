@@ -258,6 +258,22 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
+		urls.push ("assets/sounds/pause.mp3");
+		types.push (lime.Assets.AssetType.MUSIC);
+		
+		
+		urls.push ("assets/sounds/pauseSelect.mp3");
+		types.push (lime.Assets.AssetType.MUSIC);
+		
+		
+		urls.push ("assets/sounds/selDown.mp3");
+		types.push (lime.Assets.AssetType.MUSIC);
+		
+		
+		urls.push ("assets/sounds/selUp.mp3");
+		types.push (lime.Assets.AssetType.MUSIC);
+		
+		
 		urls.push ("assets/sounds/sounds-go-here.txt");
 		types.push (lime.Assets.AssetType.TEXT);
 		
@@ -467,7 +483,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "358",
+			build: "371",
 			company: "HaxeFlixel",
 			file: "ld42",
 			fps: 60,

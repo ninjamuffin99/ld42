@@ -111,6 +111,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -264,6 +268,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/sounds/keyClickRelease3.mp3", AssetType.MUSIC);
 		className.set ("assets/sounds/keyClickRelease4.mp3", __ASSET__assets_sounds_keyclickrelease4_mp3);
 		type.set ("assets/sounds/keyClickRelease4.mp3", AssetType.MUSIC);
+		className.set ("assets/sounds/pause.mp3", __ASSET__assets_sounds_pause_mp3);
+		type.set ("assets/sounds/pause.mp3", AssetType.MUSIC);
+		className.set ("assets/sounds/pauseSelect.mp3", __ASSET__assets_sounds_pauseselect_mp3);
+		type.set ("assets/sounds/pauseSelect.mp3", AssetType.MUSIC);
+		className.set ("assets/sounds/selDown.mp3", __ASSET__assets_sounds_seldown_mp3);
+		type.set ("assets/sounds/selDown.mp3", AssetType.MUSIC);
+		className.set ("assets/sounds/selUp.mp3", __ASSET__assets_sounds_selup_mp3);
+		type.set ("assets/sounds/selUp.mp3", AssetType.MUSIC);
 		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
 		type.set ("assets/sounds/sounds-go-here.txt", AssetType.TEXT);
 		className.set ("flixel/sounds/beep.mp3", __ASSET__flixel_sounds_beep_mp3);
@@ -568,6 +580,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.MUSIC);
 		id = "assets/sounds/keyClickRelease4.mp3";
+		path.set (id, id);
+		
+		type.set (id, AssetType.MUSIC);
+		id = "assets/sounds/pause.mp3";
+		path.set (id, id);
+		
+		type.set (id, AssetType.MUSIC);
+		id = "assets/sounds/pauseSelect.mp3";
+		path.set (id, id);
+		
+		type.set (id, AssetType.MUSIC);
+		id = "assets/sounds/selDown.mp3";
+		path.set (id, id);
+		
+		type.set (id, AssetType.MUSIC);
+		id = "assets/sounds/selUp.mp3";
 		path.set (id, id);
 		
 		type.set (id, AssetType.MUSIC);
@@ -907,6 +935,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/sounds/keyClickRelease4.mp3", __ASSET__assets_sounds_keyclickrelease4_mp3);
 		type.set ("assets/sounds/keyClickRelease4.mp3", AssetType.MUSIC);
+		
+		className.set ("assets/sounds/pause.mp3", __ASSET__assets_sounds_pause_mp3);
+		type.set ("assets/sounds/pause.mp3", AssetType.MUSIC);
+		
+		className.set ("assets/sounds/pauseSelect.mp3", __ASSET__assets_sounds_pauseselect_mp3);
+		type.set ("assets/sounds/pauseSelect.mp3", AssetType.MUSIC);
+		
+		className.set ("assets/sounds/selDown.mp3", __ASSET__assets_sounds_seldown_mp3);
+		type.set ("assets/sounds/selDown.mp3", AssetType.MUSIC);
+		
+		className.set ("assets/sounds/selUp.mp3", __ASSET__assets_sounds_selup_mp3);
+		type.set ("assets/sounds/selUp.mp3", AssetType.MUSIC);
 		
 		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
 		type.set ("assets/sounds/sounds-go-here.txt", AssetType.TEXT);
@@ -1720,6 +1760,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_keyclickrelease2_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_keyclickrelease3_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_keyclickrelease4_mp3 extends flash.media.Sound { }
+@:keep @:bind #if display private #end class __ASSET__assets_sounds_pause_mp3 extends flash.media.Sound { }
+@:keep @:bind #if display private #end class __ASSET__assets_sounds_pauseselect_mp3 extends flash.media.Sound { }
+@:keep @:bind #if display private #end class __ASSET__assets_sounds_seldown_mp3 extends flash.media.Sound { }
+@:keep @:bind #if display private #end class __ASSET__assets_sounds_selup_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_sounds_go_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_mp3 extends flash.media.Sound { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_flixel_mp3 extends flash.media.Sound { }
@@ -1765,6 +1809,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep #if display private #end class __ASSET__assets_data_consolab_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold"; } } 
 @:keep #if display private #end class __ASSET__assets_data_consolai_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Italic"; } } 
 @:keep #if display private #end class __ASSET__assets_data_consolaz_ttf extends lime.text.Font { public function new () { super (); name = "Consolas Bold Italic"; } } 
+
+
+
+
 
 
 
@@ -1921,6 +1969,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:file("assets/sounds/keyClickRelease2.mp3") #if display private #end class __ASSET__assets_sounds_keyclickrelease2_mp3 extends lime.utils.Bytes {}
 @:file("assets/sounds/keyClickRelease3.mp3") #if display private #end class __ASSET__assets_sounds_keyclickrelease3_mp3 extends lime.utils.Bytes {}
 @:file("assets/sounds/keyClickRelease4.mp3") #if display private #end class __ASSET__assets_sounds_keyclickrelease4_mp3 extends lime.utils.Bytes {}
+@:file("assets/sounds/pause.mp3") #if display private #end class __ASSET__assets_sounds_pause_mp3 extends lime.utils.Bytes {}
+@:file("assets/sounds/pauseSelect.mp3") #if display private #end class __ASSET__assets_sounds_pauseselect_mp3 extends lime.utils.Bytes {}
+@:file("assets/sounds/selDown.mp3") #if display private #end class __ASSET__assets_sounds_seldown_mp3 extends lime.utils.Bytes {}
+@:file("assets/sounds/selUp.mp3") #if display private #end class __ASSET__assets_sounds_selup_mp3 extends lime.utils.Bytes {}
 @:file("assets/sounds/sounds-go-here.txt") #if display private #end class __ASSET__assets_sounds_sounds_go_here_txt extends lime.utils.Bytes {}
 @:file("C:/HaxeToolkit/haxe/lib/flixel/4,5,0/assets/sounds/beep.mp3") #if display private #end class __ASSET__flixel_sounds_beep_mp3 extends lime.utils.Bytes {}
 @:file("C:/HaxeToolkit/haxe/lib/flixel/4,5,0/assets/sounds/flixel.mp3") #if display private #end class __ASSET__flixel_sounds_flixel_mp3 extends lime.utils.Bytes {}

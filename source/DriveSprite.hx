@@ -139,8 +139,9 @@ class DriveSprite extends FlxSpriteGroup
 		}
 		else
 		{
-			var newFile:FileSprite = new FileSprite(5, 0);
+			var newFile:FileSprite = new FileSprite(7, 0);
 			newFile.makeGraphic(Math.ceil(FlxG.width / 3) - 10, Math.ceil(fileSizeRatio(sizeGB)), fileColor);
+			newFile.y = 410 - 2 - newFile.height;
 			newFile.size = sizeGB;
 			newFile.fileType = fileType;
 			newFile.infected = infected;
@@ -163,11 +164,11 @@ class DriveSprite extends FlxSpriteGroup
 				if (arrayPos > 0)
 				{
 					prevSpr = grpFiles.members[arrayPos - 1];
-					spr.y = prevSpr.y + prevSpr.height + 2;
+					spr.y = prevSpr.y - spr.height - 2;
 				}
 				else
 				{
-					spr.y = 5;
+					spr.y = 410 - 4 - spr.height;
 					nextSpr = grpFiles.members[arrayPos + 1];
 				}
 				
@@ -196,7 +197,7 @@ class DriveSprite extends FlxSpriteGroup
 			
 			if (!spr.infected)
 			{
-				spr.setGraphicSize(Math.ceil(FlxG.width / 3) - 10, Math.ceil(fileSizeRatio(spr.size)));
+				spr.setGraphicSize(Math.ceil(FlxG.width / 3) - 14, Math.ceil(fileSizeRatio(spr.size)));
 				spr.updateHitbox();
 			}
 			else
