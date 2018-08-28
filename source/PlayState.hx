@@ -74,11 +74,11 @@ class PlayState extends FlxState
 		add(grpDrives);
 		
 		_txtTimer = new FlxText(20, 20, 0, "", 16);
-		add(_txtTimer);
+		// add(_txtTimer);
 		
 		var driveCount:Int = 0;
 		
-		var driveTypes = ["ssd", "hdd", "usb"];
+		var driveTypes = ["ssd"];
 		
 		while (driveCount < 3)
 		{
@@ -170,7 +170,7 @@ class PlayState extends FlxState
 		if (downloadTimer <= 0)
 		{
 			downloadFiles();
-			timerNeeded *= 0.9;
+			timerNeeded = FlxG.random.float(10, 20);
 			downloadTimer = timerNeeded;
 		}
 		
